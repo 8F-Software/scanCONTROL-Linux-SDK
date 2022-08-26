@@ -1,8 +1,8 @@
 project('cpp_examples', 'cpp')
 
 aravis_dep = dependency('aravis-0.6', version: '>=0.6')
-mescan_dep = dependency('mescan', version: '>=0.2.5')
-llt_dep = dependency('llt', version: '>=0.2.5')
+mescan_dep = dependency('mescan', version: '>=0.2.6')
+llt_dep = dependency('llt', version: '>=0.2.6')
 png_dep = dependency('libpng', version: '>=1.0.0')
 
 executable('Calibration', 'Calibration/Calibration.cpp',

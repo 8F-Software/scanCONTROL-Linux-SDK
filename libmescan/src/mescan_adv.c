@@ -45,6 +45,8 @@ struct LLT {
     ArvStream *stream;
     ArvDevice *device;
     const char *device_id;
+    gint32 firmware_id;
+    char model_id[1];
 
     gboolean is_transmitting;
     gboolean is_connected;
@@ -257,6 +259,7 @@ LLT *create_llt_device()
     hllt->device = NULL;
     hllt->stream = NULL;
     hllt->device_id = NULL;
+    hllt->firmware_id = 0;
 
     hllt->is_connected = false;
     hllt->is_transmitting = false;
@@ -634,6 +637,28 @@ gint32 connect_llt(LLT *hllt)
         goto l_disconnect;
     }
 
+    bool is_llt3000 = hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx;
+
+    if (is_llt3000){
+        // get Firmware version due to new Genicam standard
+        const char *version = NULL;
+        char firmware_string[2];
+        version = arv_device_get_string_feature_value(hllt->device, "DeviceFirmwareVersion");
+        if (version == NULL){
+            return ERROR_GENERAL_DEVICE_BUSY;
+        }
+        strncpy(firmware_string, &version[1],2);
+        hllt->firmware_id = atoi(firmware_string);
+
+        const char *model_name = arv_device_get_string_feature_value(hllt->device, "DeviceModelName");
+        if (model_name == NULL){
+            return ERROR_GENERAL_DEVICE_BUSY;
+        }
+        strncpy(hllt->model_id, &model_name[15], 1);
+    }
+
+    
+
     // connect control lost callback
     g_signal_connect(hllt->device, "control-lost", G_CALLBACK(control_lost_callback), hllt);
 
@@ -647,8 +672,37 @@ gint32 connect_llt(LLT *hllt)
         goto l_disconnect;
     }
 
+    bool is_v52orNewer = hllt->firmware_id >= 52;
+    bool sc3002 = *hllt->model_id == '2';
+
     // reset scanner image format to Standard PROFILE config
-    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
+    if (is_llt3000){
+        if (is_v52orNewer){
+            if (!sc3002){
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048");
+                arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                arv_device_set_string_feature_value(hllt->device, "ComponentSelector", "Intensity");
+                arv_device_set_string_feature_value(hllt->device, "ComponentEnable", "True");
+                arv_device_set_string_feature_value(hllt->device, "AcquisitionMode", "Continuous");
+            }
+            else {
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024");
+                arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                arv_device_set_string_feature_value(hllt->device, "ComponentSelector", "Intensity");
+                arv_device_set_string_feature_value(hllt->device, "ComponentEnable", "True");
+                arv_device_set_string_feature_value(hllt->device, "AcquisitionMode", "Continuous");
+            }
+
+
+        }
+        else {
+            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile"); 
+        }
+       
+    }
+    else {
+        arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
+    }   
     arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8");
     arv_device_set_integer_feature_value(hllt->device, "OffsetX", 0);
     arv_device_set_integer_feature_value(hllt->device, "OffsetY", 0);
@@ -669,7 +723,7 @@ gint32 connect_llt(LLT *hllt)
         }
     } else {
         // use scanner name to set offset and scaling
-        if ((ret = get_llt_scaling_and_offset(hllt, &hllt->offset, &hllt->scaling)) < GENERAL_FUNCTION_OK) {
+        if ((ret = get_llt_scaling_and_offset(hllt,&hllt->scaling,&hllt->offset)) < GENERAL_FUNCTION_OK) {
             goto l_disconnect;
         }        
     }
@@ -920,8 +974,10 @@ gint32 get_resolutions(LLT *hllt, guint32 *resolutions, guint32 resolutions_size
     //     and then change the actual sensor setting, and finally reset everything. Not very nice...
 
     //Get all the available values of feature "ProfileResolution" in order to distinguish between 30x2 and 30xx
-    guint feature_value = 0;
-    arv_device_get_available_enumeration_feature_values(hllt->device, "ProfileResolution", &feature_value);
+    //guint feature_value = 0;
+    //arv_device_get_available_enumeration_feature_values(hllt->device, "ProfileResolution", &feature_value);
+    bool sc3002 = *hllt->model_id == '2';
+
 
     if (resolutions != NULL && resolutions_size >= 4) {
         gint64 max_resolution = 0;
@@ -932,7 +988,7 @@ gint32 get_resolutions(LLT *hllt, guint32 *resolutions, guint32 resolutions_size
         } else if (hllt->scanner_type >= scanCONTROL29xx_25 && hllt->scanner_type <= scanCONTROL29xx_xxx) {
             max_resolution = 1280;
         } else if (hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx) {
-            if (feature_value == 3){
+            if (sc3002){
                 max_resolution = 1024;
             }else {
                 max_resolution = 2048;
@@ -947,7 +1003,7 @@ gint32 get_resolutions(LLT *hllt, guint32 *resolutions, guint32 resolutions_size
         resolutions[0] = max_resolution;
         resolutions[1] = max_resolution / 2;
         resolutions[2] = max_resolution / 4;
-        if (hllt->scanner_type >= scanCONTROL25xx_25 && hllt->scanner_type <= scanCONTROL25xx_xxx) 
+        if ((hllt->scanner_type >= scanCONTROL25xx_25 && hllt->scanner_type <= scanCONTROL25xx_xxx) || sc3002) 
             return 3;
         else {
             resolutions[3] = max_resolution / 8;
@@ -981,6 +1037,10 @@ gint32 set_resolution(LLT *hllt, guint32 resolution)
     if (hllt->is_transmitting) {
         return ERROR_TRANSMISSION_CANCEL_TRANSMISSION_ACTIVE;
     }
+    
+    //Check firmware version
+    bool is_v52orNewer = hllt->firmware_id >= 52;
+
     // set the correct resolution depending on scanner type (maxheight)
     if (hllt->scanner_type >= scanCONTROL29xx_25 && hllt->scanner_type <= scanCONTROL29xx_xxx) {
         switch (resolution) {
@@ -1051,23 +1111,50 @@ gint32 set_resolution(LLT *hllt, guint32 resolution)
         hllt->resolution = resolution;
         return GENERAL_FUNCTION_OK;
     } else if (hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx) {
-        switch (resolution) {
-            case 256:
-                arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile256");
-                break;
-            case 512:
-                arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile512");
-                break;
-            case 1024:
-                arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile1024");
-                break;
-            case 2048:
-                arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile2048");
-                break;
-            default:
-                return ERROR_SETGETFUNCTIONS_NOT_SUPPORTED_RESOLUTION;
-                break;
+        if (is_v52orNewer){
+            switch (resolution) {
+                case 256:
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile256");
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    break;
+                case 512:
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile512");
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    break;
+                case 1024:
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024");
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    break;
+                case 2048:
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048");
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    break;
+                default:
+                    return ERROR_SETGETFUNCTIONS_NOT_SUPPORTED_RESOLUTION;
+                    break;
+            }
         }
+        else{
+            switch (resolution) {
+                case 256:
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile256");
+                    break;
+                case 512:
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile512");
+                    break;
+                case 1024:
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile1024");
+                    break;
+                case 2048:
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile2048");
+                    break;
+                default:
+                    return ERROR_SETGETFUNCTIONS_NOT_SUPPORTED_RESOLUTION;
+                    break;
+            }
+
+        }
+
         hllt->resolution = resolution;
         return GENERAL_FUNCTION_OK;
     } else {
@@ -1094,10 +1181,20 @@ gint32 get_resolution(LLT *hllt, guint32 *resolution)
     if (hllt->camera == NULL || hllt->device == NULL || !hllt->is_connected) {
         return ERROR_GENERAL_NOT_CONNECTED;
     }
+
+    // check firmware version 
+    bool is_v52orNewer = hllt->firmware_id >= 52;
+
     if (resolution != NULL) {
         const char *profile_resolution;
         if (hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx) {
-            profile_resolution = arv_device_get_string_feature_value(hllt->device, "ProfileResolution");
+            if (is_v52orNewer){
+                profile_resolution = arv_device_get_string_feature_value(hllt->device, "RegionSelector");
+            }
+            else {
+                profile_resolution = arv_device_get_string_feature_value(hllt->device, "ProfileResolution");
+            }
+            
         } else {
             profile_resolution = arv_device_get_string_feature_value(hllt->device, "Resolution");
         }
@@ -1423,6 +1520,8 @@ gint32 set_feature(LLT *hllt, guint32 register_address, guint32 value)
  */
 gint32 set_partial_profile(LLT *hllt, TPartialProfile *partial_profile)
 {
+    const char* profile_resolution;
+
     if (hllt == NULL || partial_profile == NULL) {
         return ERROR_GENERAL_POINTER_MISSING;
     }
@@ -1443,7 +1542,35 @@ gint32 set_partial_profile(LLT *hllt, TPartialProfile *partial_profile)
         return ERROR_PARTPROFILE_NO_POINT_COUNT;
     }
 
-    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
+    //check firmware version
+    bool is_v52orNewer = hllt->firmware_id >= 52;
+
+    if (hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx) {
+        
+        if (hllt->resolution == 2048){
+                profile_resolution = "Profile2048";
+        }
+        else if (hllt->resolution == 1024){
+                profile_resolution = "Profile1024";
+        }
+        else if (hllt->resolution == 512){
+                profile_resolution = "Profile512";
+        }
+        else if (hllt->resolution == 256){
+                profile_resolution = "Profile256";
+        }
+        if (is_v52orNewer){
+            arv_device_set_string_feature_value(hllt->device, "RegionSelector", profile_resolution);
+            arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+        }
+        else {
+            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile");
+        }
+    }
+    else {
+        arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
+    }
+   
     arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8");
 
     guint32 point_unit_size = 0, data_unit_size = 0;
@@ -1753,6 +1880,9 @@ gint32 read_write_usermodes(LLT *hllt, gboolean read_write, guint32 usermode)
 
     gint32 ret = 0;
     guint32 register_value = 0;
+    //check firmware version
+    bool is_v52orNewer = hllt->firmware_id >= 52;
+    bool sc3002 = *hllt->model_id == '2';
 
     if ((ret = get_feature(hllt, 0xf0f00400, &register_value)) < GENERAL_FUNCTION_OK) {
         return ret;
@@ -1771,6 +1901,15 @@ gint32 read_write_usermodes(LLT *hllt, gboolean read_write, guint32 usermode)
             return ret;
         }
     } else {
+        //necessary to read back the resolution
+        if (is_v52orNewer){
+            if (!sc3002){//Reset Res to standard
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048");
+            }
+            else {
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024");
+            }  		
+	    }
         if ((ret = set_feature(hllt, 0xf0f00624, ((usermode & 0x0000000F) << 28))) < GENERAL_FUNCTION_OK) {
             return ret;
         }
@@ -1972,6 +2111,7 @@ gint32 transfer_video_stream(LLT *hllt, TTransferVideoType video_type, gboolean 
     }
 
     bool is_llt3000 = hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx;
+    bool is_v52orNewer = hllt->firmware_id >= 52;
 
     if (is_active) {
         if (hllt->is_transmitting) {
@@ -1979,11 +2119,25 @@ gint32 transfer_video_stream(LLT *hllt, TTransferVideoType video_type, gboolean 
         }
                               
         if (is_llt3000) {
-            if (video_type == VIDEO_MODE_0) {
-                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "LowRes");
-            } else {
-                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "HighRes");
+            if (is_v52orNewer){
+                if (video_type == VIDEO_MODE_0){
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "VideoLowRes");
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                }
+                else {
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "VideoHighRes");
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                }
             }
+            else {
+                if (video_type == VIDEO_MODE_0) {
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "LowRes");
+                } 
+                else {
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "HighRes");
+                }
+            }
+
         } else {
             arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeVideo");            
         }
@@ -2036,6 +2190,7 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
     }
 
     bool is_llt3000 = hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx;
+    bool is_v52orNewer = hllt->firmware_id >= 52;
 
     if (is_active) {
         if (hllt->is_transmitting) {
@@ -2043,7 +2198,13 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
         }
         if (transfer_profile_type == NORMAL_CONTAINER_MODE && hllt->profile_config == CONTAINER) {
             if(is_llt3000) {
-                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Container");
+                if (is_v52orNewer){
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Container");
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                }
+                else {
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Container");
+                }
             } else {
                 arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeContainer");
             }
@@ -2059,7 +2220,16 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
 
         } else if (transfer_profile_type == NORMAL_TRANSFER && hllt->profile_config == PROFILE) {
             if(is_llt3000) {
-                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile");
+                if (is_v52orNewer){
+                    const char* profile_resolution;
+        	        profile_resolution = arv_device_get_string_feature_value(hllt->device, "RegionSelector");       	
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", profile_resolution);
+                    arv_device_set_integer_feature_value(hllt->device, "Height", hllt->resolution);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                }
+                else {
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile");
+                }
             } else {
                 arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
             }
@@ -2195,6 +2365,21 @@ gint32 container_trigger_enable(LLT *hllt)
 gint32 container_trigger_disable(LLT *hllt)
 {
     return set_feature(hllt, 0xf0d00300, 0x08000000);
+}
+
+/**
+ * flush_container
+ * @hllt: a LLT instance
+ *
+ * Executes a software Container Flush signal
+ *
+ * Returns: error codes or success
+ *
+ * Since: 0.2.1
+ */
+gint32 flush_container(LLT *hllt)
+{
+    return set_feature(hllt, 0xf0d00300, 0x04000000);
 }
 
 /**

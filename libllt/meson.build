@@ -1,18 +1,18 @@
 project('llt', 'cpp',
-        version: '0.2.5',
+        version: '0.2.6',
         license: 'LGPL')
 incdir = include_directories('include')
 
 headers = ['include/llt.h']
 sources = ['src/llt.cpp']
 aravis_dep = dependency('aravis-0.6', version: '>=0.6')
-mescan_dep = dependency('mescan', version: '>=0.2.5')
+mescan_dep = dependency('mescan', version: '>=0.2.6')
 
 install_headers(headers, subdir: 'mescan')
 
 shared_library('llt', sources, include_directories: incdir, 
                                   dependencies: [aravis_dep, mescan_dep], 
-                                  version:'0.2.5', 
+                                  version:'0.2.6', 
                                   soversion:'0', 
                                   install: true,
                                   install_dir:'/usr/local/lib' )
@@ -20,7 +20,7 @@ shared_library('llt', sources, include_directories: incdir,
 pkg_mod = import('pkgconfig')
 pkg_mod.generate( libraries: '-lllt',
                   subdirs: 'mescan',
-                  version: '0.2.5',
+                  version: '0.2.6',
                   name: 'libllt',
                   filebase: 'llt',
                   install_dir:'/usr/local/lib/pkgconfig',

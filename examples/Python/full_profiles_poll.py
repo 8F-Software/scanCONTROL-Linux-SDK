@@ -124,7 +124,7 @@ if ret != len(profile_buffer):
 
 ret = llt.convert_profile_2_values(profile_buffer, len(profile_buffer), resolution, llt.TProfileConfig.PROFILE, scanner_type, 0,
                                 null_ptr_short, intensities, null_ptr_short, x, z, null_ptr_int, null_ptr_int)
-if ret & llt.CONVERT_X is 0 or ret & llt.CONVERT_Z is 0 or ret & llt.CONVERT_MAXIMUM is 0:
+if ret & llt.CONVERT_X == 0 or ret & llt.CONVERT_Z == 0 or ret & llt.CONVERT_MAXIMUM == 0:
     raise ValueError("Error converting data: " + str(ret))
 
 for i in range(16):

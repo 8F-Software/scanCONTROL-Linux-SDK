@@ -1,7 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en"><head>
-  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.7.16">
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Windows version 5.7.28">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="generator" content="Vim8">
   <meta http-equiv="Content-Language" content="en-gb">
   <meta name="GENERATOR" content="nvu 1.0">
@@ -20,7 +22,8 @@
   </style>
 </head>
 <body>
-  <table style="background-color: rgb(255, 255, 255);" summary="page header" frame="box" width="100%" cellspacing="1" cellpadding="3" border="1">
+  <table style="background-color: rgb(255, 255, 255);" summary="page header" frame="box" width="100%" cellspacing="1"
+  cellpadding="3" border="1">
     <tbody>
       <tr>
         <td align="center">
@@ -28,19 +31,19 @@
           scan<acronym>CONTROL</acronym>&nbsp;30xx Device Family</h1>
           <h1>Ethernet and Serial Port</h1>
         </td>
-        <td align="center"><img src="OpManPartB_scanCONTROL-30xx-Dateien/CompanyLogo.gif" alt="MICRO-EPSILON" border="0" align="middle"></td>
+        <td align="center"><img src="CompanyLogo.gif" alt="MICRO-EPSILON" align="middle" border="0"></td>
       </tr>
       <tr>
         <td align="center">
           <h2>Supplement B to the scan<acronym>CONTROL</acronym>&nbsp;30xx Manual</h2>
         </td>
-        <td align="center">$Revision: 48b253ab8304 $<br>
-        $Date: 2021/04/23 11:29:33 $</td>
+        <td align="center">$Revision: 2c29da8f45ea $<br>
+        $Date: 2022/02/24 11:32:14 $</td>
       </tr>
       <tr>
         <td align="center">© MICRO-EPSILON Optronic GmbH, Lessingstr. 14, D-01465 Dresden-Langebrück, Germany<br>
         e-mail <a href="mailto:optronic@micro-epsilon.de">optronic@micro-epsilon.de</a></td>
-        <td align="center"><a href="http://www.micro-epsilon.de/">www.micro-epsilon.de</a></td>
+        <td align="center"><a href="http://www.micro-epsilon.de">www.micro-epsilon.de</a></td>
       </tr>
     </tbody>
   </table><br>
@@ -52,7 +55,7 @@
         <li><a href="#interfaceEthernet">Ethernet (100/1000MBit)</a></li>
         <li><a href="#InterfaceCOM">Serial Port</a></li>
         <li><a href="#modbus">Modbus Integration (scan<acronym>CONTROL</acronym> 301x only)</a></li>
-        <li><a href="#tcpserver">Measurement server (scan<acronym>CONTROL</acronym> 301x only)</a></li>
+        <li><a href="#tcpserver">Measurement server</a></li>
         <li><a href="#addresses1394">Address Space</a></li>
       </ul>
     </li>
@@ -170,12 +173,14 @@
   second one the distance and the third one the integral intensity of reflection (moment 0). The header is <tt>#
   iso</tt>.<br>
   Example 1:</p>
-  <pre># iso<br><br>42180 42875<br><br>42106 42886<br><br>42031 42877<br><br>41959 42908<br><br>41882 42877<br><br>41813 42939<br><br>...</pre>Example
-  2:
-  <pre># iso<br><br>44582 48230 0010258<br><br>44483 48137 0011335<br><br>44380 48006 0011062<br><br>44277 47864 0011295<br><br>44174 47731 0011096<br><br>44074 47619 0011304<br><br>43972 47493 0010569<br><br>43877 47429 0011589<br><br>43776 47305 0011960<br><br>43675 47183 0012034<br><br>...</pre>The
-  equations for conversion to millimeter are <a href="#profile_data"><strong>here</strong></a>.
+  <pre>
+  # iso<br><br>42180 42875<br><br>42106 42886<br><br>42031 42877<br><br>41959 42908<br><br>41882 42877<br><br>41813 42939<br><br>...</pre>Example
+2:
+  <pre>
+  # iso<br><br>44582 48230 0010258<br><br>44483 48137 0011335<br><br>44380 48006 0011062<br><br>44277 47864 0011295<br><br>44174 47731 0011096<br><br>44074 47619 0011304<br><br>43972 47493 0010569<br><br>43877 47429 0011589<br><br>43776 47305 0011960<br><br>43675 47183 0012034<br><br>...</pre>The
+equations for conversion to millimeter are <a href="#profile_data"><strong>here</strong></a>.
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
-  <h2><a name="modbus"></a>Modbus Integration (scan<acronym>CONTROL</acronym> 301x only)</h2>
+  <h2><a name="modbus" id="modbus"></a>Modbus Integration (scan<acronym>CONTROL</acronym> 301x only)</h2>
   <p>The scan<acronym>CONTROL</acronym> device supports Modbus RTU via serial interface and Modbus TCP via Ethernet
   Interface.</p>
   <p>For using Modbus RTU the serial interface parameters baudrate, start bit (none), stop bit (2), parity bits (none) and
@@ -206,7 +211,8 @@
     <li>Reset the holding registers (write 0 to register 32):<br>
     → Modbus command: 01 06 00 20 00 00 18 00</li>
   </ol>
-  <p>For a closer description of the modbus commands please refer to the Modbus Protocol Specification available at <a href="http://www.modbus.org/">http://www.modbus.org</a> and the "Modbus Handshake for scan<acronym>CONTROL</acronym>"
+  <p>For a closer description of the modbus commands please refer to the Modbus Protocol Specification available at <a href=
+  "http://www.modbus.org">http://www.modbus.org</a> and the "Modbus Handshake for scan<acronym>CONTROL</acronym>"
   documentation (available on request).</p>
   <p>The holding register 32 acts as a command interface and supports the following commands:</p>
   <table cellspacing="2" cellpadding="2" border="1">
@@ -348,13 +354,21 @@
   command or as several single writes. In the latter case, the write to register 32 has to be issued last. Then, the content
   of the requested internal register is available at registers 36 and 37. The contents of these registers have to be read
   back by using the Read Holding registers.</p>
-  <p align="right">Back to <a href="file:///I:/E2D3D/Entwicklung/scanCONTROL_Firmware/Doku_release/scanCONTROL/2021_04_19_Config_Tools_CD66_MEO_Anteil/Documentation/english/scanCONTROL%2030XX/OpManPartB.html#contents">Contents</a>.</p>
-  <h2><a name="tcpserver"></a>Measurement Server (scan<acronym>CONTROL</acronym> 301x only)</h2>
-  <p>The scan<acronym>CONTROL</acronym> device can send measurement results to a target host using a Telnet UDP
-  connection.&nbsp;</p>
+  <p align="right">Back to <a href="OpManPartB.html#contents">Contents</a>.</p>
+  <h2><a name="tcpserver" id="tcpserver"></a>Measurement Server</h2>
+  <p>The scan<acronym>CONTROL</acronym> device can send measurement results (scan<acronym>CONTROL</acronym> 301x only) and profile data to a target
+  host using a Telnet UDP connection.</p>
+  <p>The data format of measurement results is illustrated in the documentation of scan<acronym>CONTROL</acronym> Configuration Tools.</p>
+  <p>The format of UDP profile data is a sequence of position and distance coordinates as REAL value (4 Byte) in Big Endian format + 16 Byte timestamp per profile.
+  The data is transmitted in packets with 640 bytes (fixed). Therefore the packets of one profile have to be collected at the receiving device and the timestamp has to be separated.</p>
+  <p>Example: for 2048 points per profile:<br>
+  The sequence will be:  X<sub>0</sub> Z<sub>0</sub> X<sub>1</sub> Z<sub>1</sub> … X<sub>2047</sub> Z<sub>2047</sub> TIMESTAMP<br>
+  The payload will be 2048 x 8 Byte + 16 Byte timestamp = 16.400 Byte<br>
+  The number of packets will be 26; 25x 640 Byte + 1x 400 Byte</p>
+
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
-  <h2><a name="appendix"></a>Appendix</h2>
-  <h3><a name="pinoutrs422"></a>Pinout of the Digital I/O Port</h3>
+  <h2><a name="appendix" id="appendix"></a>Appendix</h2>
+  <h3><a name="pinoutrs422" id="pinoutrs422"></a>Pinout of the Digital I/O Port</h3>
   <center>
     <table summary="Pinout" frame="box" cellspacing="1" cellpadding="5" border="1">
       <tbody>
@@ -485,7 +499,7 @@
         <td style="height: 204px;"><tt>0xf0f0019c</tt></td>
         <td style="height: 204px;">R</td>
         <td style="height: 204px;">-</td>
-        <td style="height: 204px;"><tt>0xfd000000</tt></td>
+        <td style="height: 204px;"><tt>0xff000000</tt></td>
         <td style="height: 204px;" align="left">TRANSMISSION_MODE<br>
         (DCAM: V_MODE_INQ_7)</td>
         <td style="height: 204px;" align="left">
@@ -495,12 +509,11 @@
             <li>[30]: Mode_1, 2048 × 1088 × 8bit: video image mode</li>
             <li>[29]: Mode_2, 64 × 2048 × 8bit: profile mode, 2048 points/profile, 1 profile/frame</li>
             <li>[28]: Mode_3, 64 × 1024 × 8bit: profile mode, 1024 points/profile, 1 profile/frame</li>
-			<li>[27]: Mode_4, 64 × 512 × 8bit: profile mode, 512 points/profile, 1 profile/frame</li>
+            <li>[27]: Mode_4, 64 × 512 × 8bit: profile mode, 512 points/profile, 1 profile/frame</li>
             <li>[26]: Mode_5, 64 × 256 × 8bit: profile mode, 256 points/profile, 1 profile/frame</li>
-            <li>[25]: Mode_6, reserved</li>
-            <li>[24]: Mode_7, 32768 × 4096 × 8bit: container mode</li>
-          </ul>
-          supported modes for Format_7 (scan<acronym>CONTROL</acronym> 30x2):
+            <li>[25]: Mode_6, 2048 × 65535 × 16-96bit: 3D mode</li>
+            <li>[24]: Mode_7, 32768 × 65535 × 16bit: container mode</li>
+          </ul>supported modes for Format_7 (scan<acronym>CONTROL</acronym> 30x2):
           <ul style="list-style:none;padding:0">
             <li>[31]: Mode_0, 512 × 272 × 8bit: video image mode</li>
             <li>[30]: Mode_1, 1024 × 544 × 8bit: video image mode</li>
@@ -508,9 +521,9 @@
             <li>[28]: Mode_3, 64 × 512 × 8bit: profile mode, 512 points/profile, 1 profile/frame</li>
             <li>[27]: Mode_4, 64 × 256 × 8bit: profile mode, 256 points/profile, 1 profile/frame</li>
             <li>[26]: Mode_5, reserved</li>
-            <li>[25]: Mode_6, reserved</li>
-            <li>[24]: Mode_7, 32768 × 4096 × 8bit: container mode</li>
-          </ul>		  
+            <li>[25]: Mode_6, 1024 × 65535 × 16-96bit: 3D mode</li>
+            <li>[24]: Mode_7, 32768 × 65535 × 16bit: container mode</li>
+          </ul>
         </td>
       </tr>
       <tr bgcolor="#E0E0E0">
@@ -563,7 +576,8 @@
         <td>-</td>
         <td><tt>0x00380140</tt></td>
         <td align="left">V_CSR_INQ_7_5</td>
-        <td align="left">CSR quadlet offset for Mode_5, points to <a href="#f0e00300"><tt>0xf0e00500</tt></a> (not used in scan<acronym>CONTROL</acronym> 30x2)</td>
+        <td align="left">CSR quadlet offset for Mode_5, points to <a href="#f0e00300"><tt>0xf0e00500</tt></a> (not used in
+        scan<acronym>CONTROL</acronym> 30x2)</td>
       </tr>
       <tr>
         <td><tt>0xf0f002f8</tt></td>
@@ -571,7 +585,7 @@
         <td>-</td>
         <td><tt>0x00380180</tt></td>
         <td align="left">V_CSR_INQ_7_6</td>
-        <td align="left">not used<br></td>
+        <td align="left">CSR quadlet offset for Mode_6, points to <a href="#f0e00600"><tt>0xf0e00600</tt></a></td>
       </tr>
       <tr>
         <td><tt>0xf0f002fc</tt></td>
@@ -579,7 +593,7 @@
         <td>-</td>
         <td><tt>0x003801c0</tt></td>
         <td align="left">V_CSR_INQ_7_7</td>
-        <td align="left">CSR quadlet offset for Mode_7, points to <a href="#f0e00500"><tt>0xf0e00700</tt></a></td>
+        <td align="left">CSR quadlet offset for Mode_7, points to <a href="#f0e00700"><tt>0xf0e00700</tt></a></td>
       </tr>
       <tr bgcolor="#E0E0E0">
         <td colspan="6" align="left">Inquiry register for basic function</td>
@@ -930,7 +944,8 @@
           <ul>
             <li>Extract Z: enabled</li>
             <li>Time Stamp: disabled</li>
-            <li>Container Resolution: 2048 (scan<acronym>CONTROL</acronym> 30x0) / 1024 (scan<acronym>CONTROL</acronym> 30x2)</li>
+            <li>Container Resolution: 2048 (scan<acronym>CONTROL</acronym> 30x0) / 1024 (scan<acronym>CONTROL</acronym>
+            30x2)</li>
             <li>Byte Order: LSB first</li>
             <li>Field Data Format: unsigned</li>
             <li>Extract Stripe 1: enabled</li>
@@ -1362,7 +1377,8 @@
         <td align="left">ignored</td>
       </tr>
       <tr id="f0e00200" bgcolor="#E0E0E0">
-        <td colspan="6" align="left">Transmission mode&nbsp;control and status registers for Mode_2 see section <a href="#profile_data">Description of Profile Data Format</a>.</td>
+        <td colspan="6" align="left">Transmission mode&nbsp;control and status registers for Mode_2 see section <a href=
+        "#profile_data">Description of Profile Data Format</a>.</td>
       </tr>
       <tr>
         <td><tt>0xf0e00200</tt></td>
@@ -1499,13 +1515,169 @@
         <td align="left">ignored</td>
       </tr>
       <tr id="f0e00300" bgcolor="#E0E0E0">
-        <td colspan="6" align="left">Mode_3, Mode_4 and Mode_5 (scan<acronym>CONTROL</acronym> 30x2: Mode_3 and Mode_4) have a description similar to <a href="#f0e00200">Mode_2</a>
-        but measure profiles with 1024, 512 and 256  (scan<acronym>CONTROL</acronym> 30x2: 512 and 256) points, respectively. The transmission mode control and status registers
-        start at addresses <tt>0xf0e00300</tt>, <tt>0xf0e00400</tt>, <tt>0xf0e00500</tt> (scan<acronym>CONTROL</acronym> 30x2: <tt>0xf0e00300</tt>, <tt>0xf0e00400</tt>), respectively.</td>
+        <td colspan="6" align="left">Mode_3, Mode_4 and Mode_5 (scan<acronym>CONTROL</acronym> 30x2: Mode_3 and Mode_4) have
+        a description similar to <a href="#f0e00200">Mode_2</a> but measure profiles with 1024, 512 and 256
+        (scan<acronym>CONTROL</acronym> 30x2: 512 and 256) points, respectively. The transmission mode control and status
+        registers start at addresses <tt>0xf0e00300</tt>, <tt>0xf0e00400</tt>, <tt>0xf0e00500</tt>
+        (scan<acronym>CONTROL</acronym> 30x2: <tt>0xf0e00300</tt>, <tt>0xf0e00400</tt>), respectively.</td>
+	  </tr>
+      <tr id="f0e00600" bgcolor="#E0E0E0">
+        <td colspan="6" align="left">Transmission mode&nbsp;control and status registers for Mode_6 (3DExtraction
+        mode), see section <a href="#3dExtraction">3D Extraction Format</a>.</td>
       </tr>
-      <tr id="f0e00200" bgcolor="#E0E0E0">
+      <tr>
+        <td><tt>0xf0e00600</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x0800FFFF</tt></td>
+        <td align="left">MAX_IMAGE_SIZE_INQ</td>
+        <td align="left">256/512/1024/2048 × 65536 (maximum width depends on resolution setup (Bit 15..12)
+          in <a href="#profilerearrangement">Profile Rearrangement</a>)</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00604</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x00040001</tt></td>
+        <td align="left">UNIT_SIZE_INQ</td>
+        <td align="left">4 × 1<br></td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00608</tt></td>
+        <td>R</td>
+        <td>W</td>
+        <td><tt>0x00000000</tt></td>
+        <td id="imageposition3D" align="left">IMAGE_POSITION</td>
+        <td align="left">
+          upper left edge of transmitted area
+          <ul style="list-style:none;padding:0">
+            <li>[31-16]: Left</li>
+            <li>[15-0]: Top (is ignored)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e0060C</tt></td>
+        <td>R</td>
+        <td>W</td>
+        <td><tt>0x080000C8</tt></td>
+        <td id="imagesize3D" align="left">IMAGE_SIZE</td>
+        <td align="left">
+          size of transmitted data<br>
+          <ul style="list-style:none;padding:0">
+            <li>[31-16]: Width (default: 2048 (scan<acronym>CONTROL</acronym> 30x2: 1024))</li>
+            <li>[15-0]: Height (default: 200)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00610</tt></td>
+        <td>R</td>
+        <td>W</td>
+        <td><tt>0x07010000</tt></td>
+        <td id="colorcoding3D" align="left">COLOR_CODING_ID</td>
+        <td align="left">
+          color coding (pixel format) and component selector<br>
+          <ul style="list-style:none;padding:0">
+            <li>[31-24]: Color coding ID (default: 7 = Coord3D_ABC32f)
+              <ul style="list-style:none">
+                <li>1: Coord3D_C16</li>
+                <li>2: Coord3D_AC16</li>
+                <li>3: Coord3D_ABC16</li>
+                <li>4: Coord3D_C32f</li>
+                <li>5: Mono16</li>
+                <li>6: Coord3D_AC32f</li>
+                <li>7: Coord3D_ABC32f</li>
+              </ul></li>
+            <li>[23-16]: Component selector (default: 1 = Range)
+              <ul style="list-style:none">
+                <li>0: Intensity (Maximum Intensity)</li>
+                <li>1: Range (Z, distance)</li>
+                <li>2: Reflectance (Reflection Width)</li>
+                <li>3: Scatter (Moment 0 Low)</li>
+              </ul></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00614</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x7b000000</tt></td>
+        <td align="left">COLOR_CODING_INQ</td>
+        <td align="left">
+          <ul style="list-style:none;padding:0">
+            <li>[30]: Coord3D_C16</li>
+            <li>[29]: Coord3D_AC16</li>
+            <li>[28]: Coord3D_ABC16</li>
+            <li>[27]: Coord3D_C32f</li>
+            <li>[26]: Mono16</li>
+            <li>[25]: Coord3D_AC32f</li>
+            <li>[24]: Coord3D_ABC32f</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00618<br>
+        ...<br>
+        0xf0e00230</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x00000000</tt></td>
+        <td><br></td>
+        <td align="left">filled to support block transfers</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00634</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x00064000</tt></td>
+        <td align="left">PIXEL_NUMBER_INQ</td>
+        <td align="left">updated according to the transmitted area</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00638</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x00000000</tt></td>
+        <td align="left">TOTAL_BYTES_HI_INQ</td>
+        <td align="left">updated according to the transmitted area</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e0063c</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x004b0000</tt></td>
+        <td align="left">TOTAL_BYTES_LO_INQ</td>
+        <td align="left">updated according to the transmitted area</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00640</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x00801000</tt></td>
+        <td align="left">PACKET_PARA_INQ</td>
+        <td align="left">minimal ¦ maximal packet size is 128 ¦ 4096 byte</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00644</tt></td>
+        <td>R</td>
+        <td>W</td>
+        <td><tt>0x04000400</tt></td>
+        <td align="left">BYTE_PER_PACKET</td>
+        <td align="left">actual 1024 byte/packet, recommended 1024 byte/packet<br></td>
+      </tr>
+      <tr>
+        <td><tt>0xf0e00648</tt></td>
+        <td>R</td>
+        <td>-</td>
+        <td><tt>0x000012C0</tt></td>
+        <td align="left">PACKET_PER_FRAME_INQ</td>
+        <td align="left">recalculated automatically after setting of BYTE_PER_PACKET</td>
+      </tr>
+      <tr id="f0e00700" bgcolor="#E0E0E0">
         <td colspan="6" align="left">Transmission mode&nbsp;control and status registers for Mode_7 (used as a general
-        container mode), see <a href="#container">Container Mode for Transmission</a>.</td>
+        container mode), see section <a href="#container">Container Format</a>.</td>
       </tr>
       <tr>
         <td><tt>0xf0e00700</tt></td>
@@ -1513,7 +1685,7 @@
         <td>-</td>
         <td><tt>0x80001000</tt></td>
         <td align="left">MAX_IMAGE_SIZE_INQ</td>
-        <td align="left">32768 × 4096</td>
+        <td align="left">32768 × 65535</td>
       </tr>
       <tr>
         <td><tt>0xf0e00704</tt></td>
@@ -1540,7 +1712,8 @@
         <td align="left">
           size of transmitted data (container size)<br>
           <ul style="list-style:none;padding:0">
-            <li>[31-16]: Width (must be a multiple of 4, default: 2048 (scan<acronym>CONTROL</acronym> 30x2: 1024))</li>
+            <li>[31-16]: Width (will be recalculated automatically on changes of COLOR_CODING_ID or
+			  <a href="#profilerearrangement">Profile Rearrangement</a>). Must be a multiple of 4, default: 2048 (scan<acronym>CONTROL</acronym> 30x2: 1024))</li>
             <li>[15-0]: Height (default: 200)</li>
           </ul>
         </td>
@@ -1551,7 +1724,8 @@
         <td>W</td>
         <td><tt>0x05000000</tt></td>
         <td align="left">COLOR_CODING_ID</td>
-        <td id="colorcodingcontainer" align="left">[31-24] Color coding ID (default: 5 = Mono16)
+        <td id="colorcodingcontainer" align="left">
+          [31-24] Color coding ID (default: 5 = Mono16)
           <ul style="list-style:none;padding:0">
             <li>0: Mono8</li>
             <li>5: Mono16</li>
@@ -1636,7 +1810,7 @@
       <tr>
         <td><tt>0xf0a00000</tt></td>
         <td>R</td>
-        <td>W</td>
+        <td></td>
         <td><tt><strong>25mm range</strong><br>
         1000<br>
         (0.001mm)<br>
@@ -1650,12 +1824,13 @@
         7000<br>
         (0.007mm)</tt></td>
         <td id="calibrationscale" align="left">CALIBRATION_SCALE</td>
-        <td align="left">coefficient for the calibration (conversion to mm) in Nanometer. See <a href="#profile_data">Description of Profile Data Format</a>.</td>
+        <td align="left">coefficient for the calibration (conversion to mm) in Nanometer. See <a href=
+        "#profile_data">Description of Profile Data Format</a>.</td>
       </tr>
       <tr>
         <td><tt>0xf0a00004</tt></td>
         <td>R</td>
-        <td>W</td>
+        <td></td>
         <td><tt><strong>25mm range</strong><br>
         85000000<br>
         (85mm)<br>
@@ -1669,7 +1844,42 @@
         320000000<br>
         (320mm)</tt></td>
         <td align="left">CALIBRATION_OFFSET</td>
-        <td align="left">coefficient for the calibration (conversion to mm) in Nanometer. See <a href="#profile_data">Description of Profile Data Format</a>.</td>
+        <td align="left">coefficient for the calibration (conversion to mm) in Nanometer. See <a href=
+        "#profile_data">Description of Profile Data Format</a>.</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0a00008</tt></td>
+        <td>R</td>
+        <td>W</td>
+        <td><tt>0.01<br>(float32)</tt></td>
+        <td id="coordbscale" align="left">SCAN_3D_COORD_B_SCALE</td>
+        <td align="left">coefficient for the scaling of the B-coordinate (Profile Counter). See section
+          <a href="#3dExtraction">3D Extraction Format (Transmission Mode 6)</a>.</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0a0000c</tt></td>
+        <td>R</td>
+        <td>W</td>
+        <td><tt>0.01<br>(float32)</tt></td>
+        <td id="coordbscaleencoder" align="left">SCAN_3D_COORD_B_SCALE_ENCODER</td>
+        <td align="left">coefficient for the scaling the B-coordinate (Encoder). See section
+          <a href="#3dExtraction">3D Extraction Format (Transmission Mode 6)</a>.</td>
+      </tr>
+      <tr>
+        <td><tt>0xf0a00010</tt></td>
+        <td>R</td>
+        <td></td>
+        <td><tt>0</tt></td>
+        <td id="sensorrotation" align="left">SENSOR_ROTATION</td>
+        <td align="left">
+          [1-0]: installation position of the sensor matrix<br>
+          <ul style="list-style:none">
+                <li>0: Flip Horizontal, Flip Vertical</li>
+                <li>1: Flip Vertical</li>
+                <li>2: Flip Horizontal</li>
+                <li>3: None</li>
+          </ul>
+        </td>
       </tr>
       <tr>
         <td><tt>0xf0a10000<br>
@@ -1784,6 +1994,7 @@
           <ul>
             <li>ROI2 Enable: disabled</li>
             <li>RONI Enable: disabled</li>
+            <li>Imager Sensitivity: medium</li>
             <li>EA Reference Region Enable: disabled</li>
             <li>HDR Factor: 4</li>
             <li>High Speed Mode Enable: disabled (scan<acronym>CONTROL</acronym> 30x0 only)</li>
@@ -1920,7 +2131,8 @@
           Exposure Automatic Enable
           <p>If set, the Exposure Time is automatically controlled depending on the measured object (for parametrization see
           also <a href="#exposureautomatic">Exposure Automatic Settings</a>). Exposure Time is used as a target value in
-          case there is no object inside the measuring range. Exposure Automatic also changes the internal <a href="#idletime">Idle Time</a> to keep the Profile Rate constant. Therefore, the Profile Rate equation below remains
+          case there is no object inside the measuring range. Exposure Automatic also changes the internal <a href=
+          "#idletime">Idle Time</a> to keep the Profile Rate constant. Therefore, the Profile Rate equation below remains
           valid.</p>
         </td>
       </tr>
@@ -1928,8 +2140,9 @@
         <td>12..15</td>
         <td>
           Exposure Time Offset
-          <p>in steps of 1 µs. This is for fine tuning of the Exposure Time below. Exposure Time Offset is internally saturated from 0 to 9.
-        </p></td>
+          <p>in steps of 1 µs. This is for fine tuning of the Exposure Time below. Exposure Time Offset is internally
+          saturated from 0 to 9.</p>
+        </td>
       </tr>
       <tr>
         <td>0..11</td>
@@ -1937,14 +2150,15 @@
           Exposure Time
           <p>in steps of 10 µs. This controls the duration where the photosensitive cells are exposed to light. The profile
           frequency yields from:</p>
-          <pre>Profile Rate = 1 / ((Exposure Time + Exposure Time Offset) + (Idle Time +  Idle Time Offset))</pre>
-          Exposure Time + Exposure Time Offset will always be saturated to a minimum of 1 µs.
+          <pre>Profile Rate = 1 / ((Exposure Time + Exposure Time Offset) + (Idle Time +  Idle Time Offset))</pre>Exposure
+          Time + Exposure Time Offset will always be saturated to a minimum of 1 µs.
         </td>
       </tr>
     </tbody>
   </table>
-  <p>The image sensor supports interleaved read out. If the Exposure Time is long enough for read out, the <a href="#idletime">Idle Time</a> can be decreased down to the Minimum. The highest profile rate depends on the actual video mode (e.g.
-  how many points per profile) and on the <a href="#roi1">Region Of Interest</a> size.</p>
+  <p>The image sensor supports interleaved read out. If the Exposure Time is long enough for read out, the <a href=
+  "#idletime">Idle Time</a> can be decreased down to the Minimum. The highest profile rate depends on the actual video mode
+  (e.g. how many points per profile) and on the <a href="#roi1">Region Of Interest</a> size.</p>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h3><a name="idletime" id="idletime"></a>Idle Time</h3>
   <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
@@ -1969,7 +2183,7 @@
       </tr>
     </tbody>
   </table><p>
-  </p><table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <tbody>
       <tr>
         <th>Bit</th>
@@ -1979,17 +2193,18 @@
         <td>12..15</td>
         <td>
           Idle Time Offset
-          <p>in steps of 1 µs. This is for fine tuning of the Idle Time below. Idle Time Offset is internally saturated from 0 to 9.
-        </p></td>
+          <p>in steps of 1 µs. This is for fine tuning of the Idle Time below. Idle Time Offset is internally saturated from
+          0 to 9.</p>
+        </td>
       </tr>
       <tr>
         <td>0..11</td>
         <td>
           Idle Time
-          <p>in steps of 10 µs. This controls the pause duration between 2 exposure sequences. The profile
-          frequency yields from:</p>
-          <pre>Profile Rate = 1 / ((Exposure Time + Exposure Time Offset) + (Idle Time +  Idle Time Offset))</pre>
-          Idle Time + Idle Time Offset will always be saturated to a minimum of 33 µs.
+          <p>in steps of 10 µs. This controls the pause duration between 2 exposure sequences. The profile frequency yields
+          from:</p>
+          <pre>Profile Rate = 1 / ((Exposure Time + Exposure Time Offset) + (Idle Time +  Idle Time Offset))</pre>Idle Time
+          + Idle Time Offset will always be saturated to a minimum of 33 µs.
         </td>
       </tr>
     </tbody>
@@ -2109,12 +2324,13 @@
           EA Reference Region (Distance or Position) Size
           <p>Size of the Exposure Automatic Reference Region for X (position) or Z (distance). A size of 0%..100%
           corresponds to 0..65535:</p>
-          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the following
-          possible settings internally:
+          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the
+          following possible settings internally:
           <pre>size (position) = ({1..64} * 32 * 2^16) / 2048 - 1</pre>
           <pre>size (distance) = ({1..544} * 2 * 2^16) / 1088 - 1</pre>Note: if size is set to 0, the Exposure Automatic
           Reference Region is disabled (disabled means, that the full intersection of ROI1 and ROI2 is used as reference. To
-          disable the region better use the corresponding Enable bit in the <a href="#image_sensor_features">IMAGE_SENSOR_FEATURES</a> register).
+          disable the region better use the corresponding Enable bit in the <a href=
+          "#image_sensor_features">IMAGE_SENSOR_FEATURES</a> register).
         </td>
       </tr>
       <tr>
@@ -2148,7 +2364,7 @@
       <tr align="center">
         <td>Image_Features</td>
         <td><tt>0xfffff0b02100</tt></td>
-        <td><tt>0x00004000</tt></td>
+        <td><tt>0x00004010</tt></td>
       </tr>
     </tbody>
   </table>
@@ -2181,13 +2397,31 @@
         </td>
       </tr>
       <tr>
-        <th>3..11</th>
+        <th>3..5</th>
+        <td>Image Sensor Sensitivity<p>
+        <table frame="box" cellspacing="1" cellpadding="3" border="1">
+        <tbody>
+        <tr>
+        <th>Value</th>
+        <th>Sensitivity</th>
+        </tr>
+        <tr align="center"><td>0,5,6,7</td><td>minimum</td></tr>
+        <tr align="center"><td>1</td><td>low</td></tr>
+        <tr align="center"><td>2</td><td>medium (default)</td></tr>
+        <tr align="center"><td>3</td><td>high</td></tr>
+        <tr align="center"><td>4</td><td>maximum</td></tr>
+        </tbody>
+        </table>
+        </td>
+      </tr>
+      <tr>
+        <th>6..11</th>
         <td>Reserved</td>
       </tr>
       <tr>
         <th>12..16</th>
         <td>
-          HDR Factor  (scan<acronym>CONTROL</acronym> 30x0 only)
+          HDR Factor (scan<acronym>CONTROL</acronym> 30x0 only)
           <p>This is the factor between the two exposure times if the HDR feature is enabled.</p>
           <p>Note: This field is Read-Only. Writing to this field will be ignored.</p>
         </td>
@@ -2199,7 +2433,7 @@
       <tr>
         <th>30</th>
         <td>
-          High Speed Mode Enable  (scan<acronym>CONTROL</acronym> 30x0 only)
+          High Speed Mode Enable (scan<acronym>CONTROL</acronym> 30x0 only)
           <p>This increases the maximum possible profile rate, but reduces the vertical resolution in Z-direction
           (distance).</p>
         </td>
@@ -2251,8 +2485,8 @@
         <th>10..0</th>
         <td>
           ROI1 Preset Number
-          <p>Region Of Interest 1: Selection of a predefined imager region (if Free Region is disabled). See <a href="file:///I:/E2D3D/Entwicklung/scanCONTROL_Firmware/Doku_release/scanCONTROL/2021_04_19_Config_Tools_CD66_MEO_Anteil/Documentation/english/scanCONTROL%2030XX/ROIPresets.gif">Region Of Interest Presets</a> for an overview of the available ROI
-          presets.</p>
+          <p>Region Of Interest 1: Selection of a predefined imager region (if Free Region is disabled). See <a href=
+          "./ROIPresets.gif">Region Of Interest Presets</a> for an overview of the available ROI presets.</p>
         </td>
       </tr>
       <tr>
@@ -2291,8 +2525,7 @@
     </tbody>
   </table>
   <p>Setup start and size of Z (distance) and X (position) of the Region Of Interest 1. ROI1 Free Region Enable bit must be
-  set to activate this feature.</p><span style="color:red"><strong><em>Note: In order to apply the new values of these
-  registers, it is necessary to write a 0 into the Extra Parameters register (0xf0f00808) afterwards.</em></strong></span>
+  set to activate this feature.</p>
   <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <tbody>
       <tr>
@@ -2305,8 +2538,8 @@
           ROI1 (Distance or Position) Size
           <p>Size of the imager region for X (position) or Z (distance):<br>
           A size of 0%..100% corresponds to 0..65535:</p>
-          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the following
-          possible settings internally:
+          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the
+          following possible settings internally:
           <pre>size (position) = ({1..64} * 32 * 2^16) / 2048 - 1</pre>
           <pre>size (distance) = ({1..544} * 2 * 2^16) / 1088 - 1</pre>Note: a size value of 0 is internally converted to
           65536, making the field full size.
@@ -2352,9 +2585,7 @@
   <pre>start_dyn_z = start_z + encoder / divisor_z * factor_z * 256 / 1088</pre>The formula assumes values for start_x and
   start_z as described above (ROI1 Size/Start). The terms encoder/divisor means integer division, only the integer part is
   used. Dynamic tracking is enabled by non-zero parameters. All parameters are unsigned values. The direction of tracking
-  can be reversed by swapping encoder tracks A and B.
-  <p><span style="color:red"><strong><em>Note: In order to apply the new values of these registers, it is necessary to write
-  a 0 into the Extra Parameters register (0xf0f00808) afterwards.</em></strong></span></p>
+  can be reversed by swapping encoder tracks A and B.<p>
   <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <tbody>
       <tr>
@@ -2447,8 +2678,8 @@
           ROI2 (Distance or Position) Size
           <p>Size of the imager region for X (position) or Z (distance):<br>
           A size of 0%..100% corresponds to 0..65535:</p>
-          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the following
-          possible settings internally:
+          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the
+          following possible settings internally:
           <pre>size (position) = ({1..64} * 32 * 2^16) / 2048 - 1</pre>
           <pre>size (distance) = ({1..544} * 2 * 2^16) / 1088 - 1</pre>Note: if size is set to 0, ROI2 is disabled (better
           use the ROI2 Enable bit in the <a href="#image_sensor_features">IMAGE_SENSOR_FEATURES</a> register for this)
@@ -2494,7 +2725,8 @@
       </tr>
     </tbody>
   </table>
-  <p>Pixel inside this imager region are not evaluated for the profile processing. The intersection of the regions <a href="#roi1">ROI1</a> + <a href="#roi2">ROI2</a> - RONI is used to detect a profile.</p>
+  <p>Pixel inside this imager region are not evaluated for the profile processing. The intersection of the regions <a href=
+  "#roi1">ROI1</a> + <a href="#roi2">ROI2</a> - RONI is used to detect a profile.</p>
   <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <tbody>
       <tr>
@@ -2507,8 +2739,8 @@
           RONI (Distance or Position) Size
           <p>Size of the imager region for X (position) or Z (distance):<br>
           A size of 0%..100% corresponds to 0..65535:</p>
-          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the following
-          possible settings internally:
+          <pre>size = (size in %) / 100 * (2^16 - 1)</pre>Due to sensor restrictions, all values are rounded to the
+          following possible settings internally:
           <pre>size (position) = ({1..64} * 32 * 2^16) / 2048 - 1</pre>
           <pre>size (distance) = ({1..544} * 2 * 2^16) / 1088 - 1</pre>Note: if size is set to 0, RONI is disabled (better
           use the RONI Enable bit in the <a href="#image_sensor_features">IMAGE_SENSOR_FEATURES</a> register for this)
@@ -2597,9 +2829,7 @@
     </tbody>
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
-  <h3><a name="peakfilter" id="peakfilter"></a>Peak Filter</h3><span style="color:red"><strong><em>Note: In order to apply
-  the new values of these registers, it is necessary to write a 0 into the Extra Parameters register (0xf0f00808)
-  afterwards.</em></strong></span>
+  <h3><a name="peakfilter" id="peakfilter"></a>Peak Filter</h3>
   <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <colgroup>
       <col width="33%">
@@ -2762,7 +2992,8 @@
         <td>6</td>
         <td>
           Flip Distance Enable
-          <p>Flips the profile vertically (z-coordinates). Mirror axis is parallel to the X-axis at Z = <a href="#calibrationscale">calibration_offset</a>. See also <a href="#mmconversion">Conversion To mm</a></p>
+          <p>Flips the profile vertically (z-coordinates). Mirror axis is parallel to the X-axis at Z = <a href=
+          "#calibrationscale">calibration_offset</a>. See also <a href="#mmconversion">Conversion To mm</a></p>
         </td>
       </tr>
       <tr>
@@ -2776,7 +3007,8 @@
         <td>9..10</td>
         <td>
           Exposure Automatic Alignment
-          <p>Alignment of consecutive exposure intervals (only useful in combination with <a href="#exposureautomatic">Exposure Automatic</a> and <a href="#trigger">External Trigger</a>)</p>
+          <p>Alignment of consecutive exposure intervals (only useful in combination with <a href=
+          "#exposureautomatic">Exposure Automatic</a> and <a href="#trigger">External Trigger</a>)</p>
           <ol start="0">
             <li>Align centre of subsequent exposure intervals</li>
             <li>Align at the end (right edge) of subsequent exposure intervals</li>
@@ -3019,7 +3251,8 @@
       </tr>
     </tbody>
   </table>
-  <p>Changes the data layout and size of profiles for transmission. Should be used only in conjunction with the <a href="#container">Container Mode for Transmission</a>.</p>
+  <p>Changes the data layout and size of profiles for transmission. Should be used only in conjunction with the <a href=
+  "#container">Container Mode for Transmission</a>.</p>
   <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <tbody>
       <tr>
@@ -3060,7 +3293,8 @@
       </tr>
       <tr>
         <th>15..12</th>
-        <td>Container Resolution (8 ≙ 256 points, 9 ≙ 512 points, 10 ≙ 1024 points and 11 ≙ 2048 points (scan<acronym>CONTROL</acronym> 30x0 only), other values not supported)</td>
+        <td>Container Resolution (8 ≙ 256 points, 9 ≙ 512 points, 10 ≙ 1024 points and 11 ≙ 2048 points
+        (scan<acronym>CONTROL</acronym> 30x0 only), other values not supported)</td>
       </tr>
       <tr>
         <th>11</th>
@@ -3242,8 +3476,8 @@
               </tr>
             </tbody>
           </table>
-          <p><b>Note:</b> This setting is saved immediately. It can not be saved or loaded via User Modes.
-        </p></td>
+          <p><strong>Note:</strong> This setting is saved immediately. It can not be saved or loaded via User Modes.</p>
+        </td>
       </tr>
       <tr>
         <th>4..7</th>
@@ -3359,14 +3593,15 @@
               </tr>
             </tbody>
           </table><br>
-          <b>encoder:</b> the input counts every edge, usually an encoder outputs 4 edges per encoder count (index track: positive edge).<p>
-          <b>user mode loading:</b> [bit3 bit2 bit1 bit0] = 0..14 = user mode 1..15
-        </p></td>
+          <strong>encoder:</strong> the input counts every edge, usually an encoder outputs 4 edges per encoder count (index
+          track: positive edge).
+          <p><strong>user mode loading:</strong> [bit3 bit2 bit1 bit0] = 0..14 = user mode 1..15</p>
+        </td>
       </tr>
       <tr>
         <th>0..3</th>
         <td>
-          <a name="differentialModes"></a>
+          <a name="differentialModes" id="differentialModes"></a>
           <table summary="description" cellspacing="1" cellpadding="3" border="0">
             <tbody>
               <tr>
@@ -3676,9 +3911,11 @@
         <th>11</th>
         <td>
           Pulsed Mode Enable
-          <p>The laser is switched on only in the first half of the measurement interval. Additionally the&nbsp;<a href="#differentialModes">external trigger output</a> is delayed by half of the measurement interval (or 180 degrees).
+          <p>The laser is switched on only in the first half of the measurement interval. Additionally the&nbsp;<a href=
+          "#differentialModes">external trigger output</a> is delayed by half of the measurement interval (ExposureTime + IdleTime)
+          plus 120µs (this is a needed delay to wait before the laser reaches the full power).
           A synchronised slave sensor would measure during the master's idle time.<br>
-          It is recommended to set up Exposure Time &lt; Idle Time.</p>
+          It is recommended to set up Exposure Time &lt; (Idle Time - 2 * 120µs).</p>
         </td>
       </tr>
     </tbody>
@@ -3765,8 +4002,7 @@
       </tr>
       <tr>
         <th>2</th>
-        <td>reserved</td>
-      </tr>
+        <td>UDP Dump Enable</td>
       <tr>
         <th>3</th>
         <td>
@@ -3881,12 +4117,13 @@
   The user modes can be loaded while transmission is enabled. <em>Be careful not to change important transmission parameters
   like packet size or image size. This may lock or crash the PC.</em></p>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
-  <h2><a name="profile_data" id="profile_data"></a>Description of Profile Data Format</h2>
-  <p>A profile consists of&nbsp;256, 512, 1024, or 2048 (scan<acronym>CONTROL</acronym> 30x0 only) points (Cur_Transmission_Mode). Each point consists of 4
-  reflections, each reflection is described by 4 × 32 bits (16 byte):</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <h2><a name="profile_data" id="profile_data"></a>Description of Profile Data Format (Transmission Mode 2-5)</h2>
+  <p>A profile consists of&nbsp;256, 512, 1024, or 2048 (scan<acronym>CONTROL</acronym> 30x0 only) points
+  (Cur_Transmission_Mode). Each point consists of 4 reflections, each reflection is described by 4 × 32 bits (16 byte):</p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
-      General Structure of a Profile Data Stream (Transmission_Mode_3 (scan<acronym>CONTROL</acronym> 30x2; Transmission_Mode_2), 1024 points)
+      General Structure of a Profile Data Stream (Transmission_Mode_3 (scan<acronym>CONTROL</acronym> 30x2;
+      Transmission_Mode_2), 1024 points)
     </caption>
     <tbody>
       <tr>
@@ -3931,7 +4168,7 @@
       </tr>
     </tbody>
   </table><p>
-  </p><table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <colgroup>
       <col width="6.25%">
       <col width="31.25%">
@@ -3961,7 +4198,7 @@
       </tr>
     </tbody>
   </table><p>
-  </p><table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Description of Fields.
     </caption>
@@ -4020,11 +4257,13 @@
   <h3><a name="mmconversion" id="mmconversion"></a>Conversion to Millimeter</h3>
   <p>In order to get a valid distance and position in millimeters, Calibration Enable and High Resolution Enable must be set
   (<a href="#profileprocessing">Profile Processing</a>) and the fields have to be converted via the following formula:</p>
-  <pre>    distance_in_mm = ( distance - 32768 ) * calibration_scale/1000000 + calibration_offset/1000000<br>
+  <pre>
+    distance_in_mm = ( distance - 32768 ) * calibration_scale/1000000 + calibration_offset/1000000<br>
     position_in_mm = ( position - 32768 ) * calibration_scale/1000000
-    </pre><a href="#calibrationscale">&lt;calibration_scale&gt;</a> and <a href="#calibrationscale">&lt;calibration_offset&gt;</a> are scan<acronym>CONTROL</acronym> type dependend and can be read via
+    </pre><a href="#calibrationscale">&lt;calibration_scale&gt;</a> and <a href=
+"#calibrationscale">&lt;calibration_offset&gt;</a> are scan<acronym>CONTROL</acronym> type dependend and can be read via
 GVCP registers.<p>
-  </p><table summary="none" frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table summary="none" frame="box" cellspacing="1" cellpadding="3" border="1">
     <thead align="center">
       <tr>
         <th><tt>measurement range</tt></th>
@@ -4067,8 +4306,7 @@ GVCP registers.<p>
   <p>The last 4 words (32bits) of each profile contain the time stamp. If the whole frame is transmitted, the time stamp
   will overwrite the fourth reflection of the last row which does not contain any valuable information in most cases. If
   partial profile is used, valuable information can be overwritten. If the Exposure Time less than 4μs, than the Exposure
-  entries might be not correct.</p>
-  The time stamp has the following format:
+  entries might be not correct.</p>The time stamp has the following format:
   <table summary="description" frame="box" cellspacing="1" cellpadding="3" border="1">
     <colgroup>
       <col width="6%">
@@ -4189,14 +4427,14 @@ GVCP registers.<p>
   Note: This cannot be combined with the container mode (Mode_7).
   <p>To setup a partial profile, use the IMAGE_POSITION and IMAGE_SIZE register of the corresponding Transmission Mode.
   Imagine one profile as an image. The 64 Byte of reflection 1 to 4 of one point is one row of the image. The image has then
-  256, 512, 1024 or 2048 (scan<acronym>CONTROL</acronym> 30x0 only) rows, depending on the Transmission Mode. This are the values given in each
-  MAX_IMAGE_SIZE_INQ register of the corresponding mode. IMAGE_POSITION and IMAGE_SIZE can now be used to cut out a
-  rectangle of the whole image.<br>
+  256, 512, 1024 or 2048 (scan<acronym>CONTROL</acronym> 30x0 only) rows, depending on the Transmission Mode. This are the
+  values given in each MAX_IMAGE_SIZE_INQ register of the corresponding mode. IMAGE_POSITION and IMAGE_SIZE can now be used
+  to cut out a rectangle of the whole image.<br>
   Please be aware that all values for IMAGE_SIZE and IMAGE_POSITION must be a multiple of 4.</p>
   <p>In the example below only the red shaded bytes are transferred. This means, only the position and distance fields in
   reflection 1 of Point 0 until Point 7 will be transmitted.<br>
   Note: The time stamp will destroy all fields from Point 4 until Point 7 (16 Bytes).</p>
-  <table table-layout="fixed" frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table table-layout="fixed" border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Partial Profile Example:<br>
       IMAGE_POSITION=0x00040000, IMAGE_SIZE=0x00040008
@@ -4401,23 +4639,208 @@ GVCP registers.<p>
     </tbody>
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
-  <h2><a name="container" id="container"></a>Container Mode for Transmission</h2>
+
+  <h2><a name="3dExtraction" id="3dExtraction"></a>3D Extraction Format (Transmission Mode 6)</h2>
+  <p>3D Extraction mode provides profile data as a 3D point cloud as it is defined by the GenICam SFNC standard.
+  A number of points (pixels) is transmitted and each pixel is defined by 3 coordinates A and B (optional)
+  and C (mandatory).
+
+  <table table-layout="fixed" border="1" cellpadding="3" cellspacing="1" frame="box">
+    <caption>
+    </caption>
+    <tbody>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixel</td>
+        <td rowspan="2" colspan="3">first</td>
+        <td rowspan="2" colspan="3">second</td>
+        <td rowspan="2">...</td>
+        <td rowspan="2" colspan="3">last</td>
+      </tr>
+      <tr>
+        <td>Profile<br>
+      </tr>
+      <tr>
+        <td align="center">1</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+        <td>...</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+      </tr>
+      <tr>
+        <td align="center">2</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+        <td>...</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+      </tr>
+      <tr>
+        <td align="center">...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>
+      <tr>
+        <td align="center">n</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+        <td>...</td>
+        <td>CoordA</td>
+        <td>CoordB</td>
+        <td>CoordC</td>
+      </tr>
+    </tbody>
+  </table><p>
+  The number of pixels transmitted depends on the following settings:
+  <ul>
+    <li>The maximum possible number of pixels for one profile is set by the <tt>Container Resolution</tt> in
+        <a href="#profilerearrangement">PROFILE_REARRANGEMENT</a>
+    </li>
+     <li>It is possilble to only transmit a slice of pixels for each profile with the settings in the
+      <a href="#imageposition3D">IMAGE_POSITION</a> and <a href="#imagesize3D">IMAGE_SIZE</a> registers.
+      <tt>Left</tt> defines the first pixel to transmit (<tt>0 ... Container Resolution - 1</tt>) and <tt>Width</tt> defines the number
+      of pixels per profile to transmit beginning from <tt>Left</tt> (max: <tt>Container Resolution - Left</tt>). The values in these registers
+      are internally limited to the maximum possible value.<p>
+      <strong>Example 1:</strong> <tt>Container Resolution = 2048, Left = 20, Width = 200:</tt> 200 pixels will be transmitted,
+      beginning at pixel 20 (first), ending with pixel 220 (last).<br>
+      <strong>Example 2:</strong> <tt>Container Resolution = 256, Left = 200, Width = 1024:</tt> 56 pixels will be transmitted,
+      beginning at pixel 200 (first), ending with pixel 255 (last).
+    </li>
+    <li>The number of profiles to transmit (<tt>n</tt>) is defined by the <tt>height</tt> setting in the 
+      <a href="#imagesize3D">IMAGE_SIZE</a> register.
+    </li>
+  </ul>
+  <h3>CoordA</h3>
+  Coordinate A will be transmitted if one of the following pixel formats in <a href="#colorcoding3D">COLOR_CODING_ID</a>
+  is selected, otherwise it will be omitted: <tt>Coord3D_AC16, Coord3D_ABC16, Coord3D_AC32f and Coord3D_ABC32f</tt><p>
+  <table table-layout="fixed" border="1" cellpadding="3" cellspacing="1" frame="box">
+    <tbody>
+      <tr>
+        <td>Settings</td>
+        <td>pixel format: <tt>Coord3D_AC16 or Coord3D_ABC16</tt></td>
+        <td>pixel format: <tt>Coord3D_AC32f or Coord3D_ABC32f</tt></td>
+      </tr>
+      <tr>
+        <td>content of CoordA<br>
+          <td>16 bit <tt>position</tt> (X) value as defined in <a href="#profile_data">Description of Profile Data Format</a></td>
+        <td>converted <tt>position</tt> (X) in mm as an IEEE 754 float32 value. The conversion is done, using the
+          <tt>position_in_mm</tt> formula as defined in <a href="#profile_data">Description of Profile Data Format</a>
+        </td>
+      </tr>
+    </tbody>
+  </table><p>
+  <h3>CoordB</h3>
+  Coordinate B will be transmitted if one of the following pixel formats in <a href="#colorcoding3D">COLOR_CODING_ID</a>
+  is selected, otherwise it will be omitted: <tt>Coord3D_ABC16, and Coord3D_ABC32f</tt><p>
+  <table table-layout="fixed" border="1" cellpadding="3" cellspacing="1" frame="box">
+    <tbody>
+      <tr>
+        <td>Settings</td>
+        <td>pixel format: <tt>Coord3D_ABC16</tt><br>
+          <a href="#maintenance">Maintenance Functions</a>: <tt>Encoder Enable = 0</tt>:</td>
+        <td>pixel format: <tt>Coord3D_ABC16</tt><br>
+          <a href="#maintenance">Maintenance Functions</a>: <tt>Encoder Enable = 1</tt>:</td>
+        <td>pixel format: <tt>Coord3D_ABC32f</tt><br>
+          <a href="#maintenance">Maintenance Functions</a>: <tt>Encoder Enable = 0</tt>:</td>
+        <td>pixel format: <tt>Coord3D_ABC32f</tt><br>
+          <a href="#maintenance">Maintenance Functions</a>: <tt>Encoder Enable = 1</tt>:</td>
+      </tr>
+      <tr>
+        <td>content of CoordB<br>
+        <td>16 bit unsigned int profile counter, starting with 0. Lost profiles are taken into account.</a></td>
+        <td>16 bit signed int encoder value (counted edges).</td>
+        <td>profile counter, scaled to mm as an IEEE 754 float32 value, starting with 0mm. The scaling factor (mm/count)
+          can be set via the register <a href="#coordbscale">SCAN_3D_COORD_B_SCALE</a>
+        </td>
+        <td>encoder value, scaled to mm as an IEEE 754 float32 value. The scaling factor (mm/edge) can be set
+          via the register <a href="#coordbscaleencoder">SCAN_3D_COORD_B_SCALE_ENCODER</a>
+        </td>
+      </tr>
+    </tbody>
+  </table><p>
+  <h3>CoordC</h3>
+  Coordinate C is always transmitted for all pixel formats and contains the component selected in
+  <a href="#colorcoding3D">COLOR_CODING_ID</a>.<p>
+  <table table-layout="fixed" border="1" cellpadding="3" cellspacing="1" frame="box">
+    <tbody>
+      <tr>
+        <td>Settings</td>
+        <td>pixel format: <tt>Coord3D_C16, Coord3D_AC16 or Coord3D_ABC16</tt><br>
+          component: <tt>Range</tt></td>
+        <td>pixel format: <tt>Coord3D_C32f, Coord3D_AC32f or Coord3D_ABC32f</tt><br>
+          component: <tt>Range</tt></td>
+        <td>pixel format: <tt>Mono16</tt><br>
+          component: <tt>Intensity</tt></td>
+        <td>pixel format: <tt>Mono16</tt><br>
+          component: <tt>Reflectance</tt></td>
+        <td>pixel format: <tt>Mono16</tt><br>
+          component: <tt>Scatter</tt></td>
+      </tr>
+      <tr>
+        <td>content of CoordA<br>
+        <td>16 bit <tt>distance</tt> (Z) value as defined in <a href="#profile_data">Description of Profile Data Format</a></td>
+        <td>converted <tt>distance</tt> (Z) in mm as an IEEE 754 float32 value. The conversion is done, using the
+          <tt>distance_in_mm</tt> formula as defined in <a href="#profile_data">Description of Profile Data Format</a>
+        </td>
+        <td>16 bit <tt>height</tt> value as defined in <a href="#profile_data">Description of Profile Data Format</a></td>
+        <td>16 bit <tt>width</tt> value as defined in <a href="#profile_data">Description of Profile Data Format</a></td>
+        <td>lower 16 bit of <tt>moment0</tt> value as defined in <a href="#profile_data">Description of Profile Data Format</a></td>
+      </tr>
+    </tbody>
+  </table><p>
+  <h3>Additional settings</h3>
+  The field data format for 16 bit pixel formats can be changed via bit 18 in <a href="#profilerearrangement">PROFILE_REARRANGEMENT</a><br>
+  For all pixel formats the resulting bytes of the 16 bit integer or 32 bit float values can be swapped (toggle endianness)
+  via bit 17 in <a href="#profilerearrangement">PROFILE_REARRANGEMENT</a><p>
+  <p align="right">Back to <a href="#contents">Contents</a>.</p>
+
+
+
+
+
+
+
+  <h2><a name="container" id="container"></a>Container Format (Transmission Mode 7)</h2>
   <p>The container mode provides a flexible way to transmit profile data. It releases the fixed connection between profile
   resolution (points per profile) and the video mode used for transmission. It provides also a data layout which is easier
   to handle for the application software running on the PC.</p>
-  <p>The Mode_7 serves as a data container. The IMAGE_SIZE register determines its size which can be up to 256MByte (32760 *
-  4096 * 2 Byte). One container is equivalent to one frame in case of a video camera. Data of consecutive profiles are
+  <p>The Mode_7 serves as a data container. The IMAGE_SIZE register determines its size which can be up to 4GByte (32760 *
+  65535 * 2 Byte). One container is equivalent to one frame in case of a video camera. Data of consecutive profiles are
   collected until they fill one container of the specified size. The application software receives only complete containers.
   The rate at which filled containers are available depends on the measurement frequency and on the number of profiles per
   container. If the scan<acronym>CONTROL</acronym> device runs at 100 profiles/second and one container contains 128
   profiles, then the application software will get approximately one container per second. This reduces the required
   response time by a factor of 100.</p>
+  <h3>Rearrangement</h3>
   <p>A flexible rearrangement of the profile data before transmission simplifies the following processing and reduces the
   amount of data being transmitted. With a carefully chosen data layout and container size the
   scan<acronym>CONTROL</acronym> device connects seamlessly to an image processing software that can operate on height data
   as a greyscale map.</p>
-  <p>The <a href="#profilerearrangement">PROFILE_REARRANGEMENT</a> register determines the number of points per profile
-  (Container Resolution) and which information, in other words which fields of which stripes are actually transmitted.
+  <p>The <a href="#profilerearrangement">PROFILE_REARRANGEMENT</a> register determines the mandatory setting of the number
+  of points per profile (resolution of the position axis X) and which information, in other words which fields of which
+  stripes are actually transmitted (if nothing is selected, the original profile will be transmitted).
   Fields are information like z-coordinate, x-coordinate, maximum intensity, reflection width, threshold or moments of
   reflections, or the time stamp of the profile. Each field consists of an 16bit integer value (2 bytes) per point of the
   profile, except the time stamp, which is always 16 bytes and resides in the last 16 bytes of one rearranged profile data
@@ -4430,13 +4853,13 @@ GVCP registers.<p>
   resolution 1024, <tt>0x-----009</tt> selects the fields z-coordinate and maximum intensity.<br>
   The resulting data will have 2 fields * 3 stripes * 1024 points * 2 bytes = 12288 bytes.<br>
   An appropriate container could have an IMAGE_SIZE of 6144 x 1000. 6144 is the Width, which is 12288/2 (2 bytes per pixel
-  due to colour coding Mono16, which is the recommended PixelFormat) and 1000 is the Height (can be 1 to 4096), which
+  due to colour coding Mono16, which is the recommended PixelFormat) and 1000 is the Height (can be 1 to 65535), which
   represents the number of rearranged profiles.<br>
   The application software would acquire a 16 bit grey scale image of 6144 × 1000 pixels (~11.7MByte) which divides into 6
   columns, each 1024 pixels wide. The first column contains z-coordinates and the second one contains the maximum intensity
   both from the first stripe. The third and fourth columns contain those values from the second stripe and the fifth and
   sixth columns those frome the third stripe. One row of the image contains the information of one rearranged profile.</p>
-  <table table-layout="fixed" frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table table-layout="fixed" border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Container Image Example:<br>
       PROFILE_REARRANGEMENT=0x8270A009, IMAGE_SIZE=6144 x 1000
@@ -4547,8 +4970,9 @@ GVCP registers.<p>
   <p>Several restrictions apply for the container settings in order to work reliable:</p>
   <ul>
     <li>The pixel format shall be set to Mono16, since the most of the selectable fields are 16bit, so each field is
-      represented by a pixel then.(<a href="#colorcodingcontainer">COLOR_CODING_ID</a>).</li>
-    <li>At least one container content item and one stripe have to be selected (<a href="#profilerearrangement">PROFILE_REARRANGEMENT</a>).</li>
+    represented by a pixel then.(<a href="#colorcodingcontainer">COLOR_CODING_ID</a>).</li>
+    <li>At least one container content item and one stripe have to be selected (<a href=
+    "#profilerearrangement">PROFILE_REARRANGEMENT</a>).</li>
     <li><a href="#imagesizecontainer">IMAGE_SIZE</a> (Width * Height) must be an integer multiple of the rearranged profile
     size (in 16 bit Words, Mono16 Pixelformat).<br>
     The rearranged profile size in Words can be calculated by:<br>
@@ -4563,18 +4987,17 @@ GVCP registers.<p>
   <h3><a name="generalVER" id="generalVER"></a>General</h3>
   <p>The currently running firmware version shows up in the model name string. The standalone demo programme shows it by
   default. The model name string looks like:</p>
-  <pre>scanCONTROL 3050-25 v51-04
+  <pre>scanCONTROL 3050-25 v53-05
                      -- --
                       |  |
                       |  +------- logic firmware
-                      +--------- controller firmware</pre>The current production version is <strong>v51-04</strong>
+                      +--------- controller firmware</pre>The current production version is <strong>v53-05</strong>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h3><a name="detailsVER" id="detailsVER"></a> Details</h3>
   <p>Enhancement of features also means enhancement of interface. The above table of control and status registers reflects
   always the current interface specification. Older firmware versions may implement a slightly different interface or only
   parts of it.</p>
-  <p><em>See also <a href="file:///I:/E2D3D/Entwicklung/scanCONTROL_Firmware/Doku_release/scanCONTROL/2021_04_19_Config_Tools_CD66_MEO_Anteil/Documentation/english/scanCONTROL%2030XX/FirmwareChangelog.html">scanCONTROL Release Notes</a> for a complete firmware history.</em></p>
+  <p><em>See also <a href="FirmwareChangelog.html">scanCONTROL Release Notes</a> for a complete firmware history.</em></p>
   <p align="right"></p>
-
-
-</body></html>
+</body>
+</html>

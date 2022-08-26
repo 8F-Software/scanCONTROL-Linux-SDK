@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-  <meta name="generator" content="HTML Tidy for HTML5 for Windows version 5.6.0">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Windows version 5.7.28">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Language" content="en-gb">
   <meta http-equiv="X-UA-Compatible" content="IE=9">
   <meta name="GENERATOR" content="nvu 1.0">
@@ -20,26 +21,26 @@
   </style>
 </head>
 <body>
-  <table style="background-color: rgb(255, 255, 255);" summary="page header" frame="box" width="100%" cellspacing="1" cellpadding="3" border="1">
+  <table style="background-color: rgb(255, 255, 255);" summary="page header" border="1" cellpadding="3" cellspacing="1" frame="box" width="100%">
     <tbody>
       <tr>
         <td align="center">
           <h1>Post Processing of Profiles</h1>
           <h1>with scan<acronym>CONTROL</acronym>&nbsp;</h1>
         </td>
-        <td align="center"><img src="OpManPartC-Dateien/ME_Logo.svg" alt="MICRO-OPTRONIC" border="0" align="middle"></td>
+        <td align="center"><img src="ME_Logo.svg" alt="MICRO-OPTRONIC" align="middle" border="0"></td>
       </tr>
       <tr>
         <td align="center">
           <h2>Supplement C to the scan<acronym>CONTROL</acronym> Manual</h2>
         </td>
-        <td align="center">$Revision: 266044bf572e $<br>
-        $Date: 2020/12/16 10:18:50 $</td>
+        <td align="center">$Revision: 86eaba10feef $<br>
+        $Date: 2021/09/09 08:16:37 $</td>
       </tr>
       <tr>
         <td align="center">© Micro-Optronic-Messtechnik GmbH, Lessingstr. 14, D-01465 Dresden (Langebrück), Germany<br>
         e-mail <a href="mailto:info@micro-optronic.de">info@micro-optronic.de</a></td>
-        <td align="center"><a href="http://www.micro-optronic.de/">www.micro-optronic.de</a></td>
+        <td align="center"><a href="http://www.micro-optronic.de">www.micro-optronic.de</a></td>
       </tr>
     </tbody>
   </table><br>
@@ -73,16 +74,11 @@
     <li><a href="#m131">Module 131: General Results</a></li>
   </ul>
   <h2><a name="about" id="about">About this Document</a></h2>
-  <p>This document describes the interface of the programmable post 
-processing modules. In other words, it specifies a programming language.
-  Different components like device firmware, demo programmes and 
-configuration tools rely on specific revisions of the specification 
-making a clear
-  revision management absolutely necessary. The following table 
-summarises&nbsp;the existing revisions and where they are implemented. 
-The rest of
+  <p>This document describes the interface of the programmable post processing modules. In other words, it specifies a programming language.
+  Different components like device firmware, demo programmes and configuration tools rely on specific revisions of the specification making a clear
+  revision management absolutely necessary. The following table summarises&nbsp;the existing revisions and where they are implemented. The rest of
   the document, of course, reflects only the most recent revision.</p>
-  <table width="100%" cellspacing="2" cellpadding="2" border="1">
+  <table border="1" cellpadding="2" cellspacing="2" width="100%">
     <tbody>
       <tr>
         <th colspan="1" rowspan="2">Revision</th>
@@ -258,12 +254,14 @@ The rest of
         <td>
           <ul>
             <li>added support for the&nbsp;<a href="#m8">WAGO buscoupler 750-841</a> (2710 only)</li>
-            <li>added a <a href="#func_if-init-temporal-filter">IfInitTemporalFilter</a> and a <a href="#func_if-temporal-filter">IfTemporalFilter</a> command to the formula module</li>
+            <li>added a <a href="#func_if-init-temporal-filter">IfInitTemporalFilter</a> and a <a href=
+            "#func_if-temporal-filter">IfTemporalFilter</a> command to the formula module</li>
             <li>added a <a href="#func_root-square-add">RootSquareSum</a> command to the formula module</li>
             <li>added a <a href="#func_save">Save</a> command to the formula module</li>
             <li>added a <a href="#func_rotate-point">RotatePoint</a> command to the formula module</li>
             <li>added the <a href="#m10">Gap Finder</a> module</li>
-            <li>added <a href="#m5">MathAll</a>, <a href="#m5">Clip</a>, <a href="#m5">ClipAll</a>, <a href="#m5">FillGaps</a> and <a href="#m5">FillGapsAll</a> filter types</li>
+            <li>added <a href="#m5">MathAll</a>, <a href="#m5">Clip</a>, <a href="#m5">ClipAll</a>, <a href="#m5">FillGaps</a> and <a href=
+            "#m5">FillGapsAll</a> filter types</li>
             <li><a href="#m5">Copy</a>, <a href="#m5">Math</a>, <a href="#m5">Clip</a>&nbsp;and <a href="#m5">FillGaps</a> type filters do not need
             scratch space, the adjacent stripe is not used anymore</li>
           </ul>
@@ -388,12 +386,10 @@ The rest of
     </tbody>
   </table>
   <h2><a name="general" id="general">General</a></h2>
-  <p>Post processing of profiles manipulates data on a profile by 
-profile basis. After basic processing, a queue of algorithms called 
-modules is
+  <p>Post processing of profiles manipulates data on a profile by profile basis. After basic processing, a queue of algorithms called modules is
   executed.&nbsp;</p>
   <p>All modules operate on one data set which is subdivided into four stripes. The stripes are aligned column by column.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       General Structure of Profile Data.
     </caption>
@@ -412,18 +408,12 @@ modules is
       </tr>
     </tbody>
   </table>
-  <p>Each stripe can contain profile data of a single profile. After 
-standard processing (selection of one reflection, high resolution, 
-calibration)
-  the first stripe contains the measured profile and all other stripes 
-contain invalid data (excepting the time stamp residing in the fourth 
-stripe).
-  This is the recommended pre processing of profile data before post 
-processing. All stripes may contain valid (and valuable) information in 
-special
+  <p>Each stripe can contain profile data of a single profile. After standard processing (selection of one reflection, high resolution, calibration)
+  the first stripe contains the measured profile and all other stripes contain invalid data (excepting the time stamp residing in the fourth stripe).
+  This is the recommended pre processing of profile data before post processing. All stripes may contain valid (and valuable) information in special
   cases (processing of all reflections).</p>
   <p>Each stripe consists of several sub stripes called fields.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       General Structure of stripes.
     </caption>
@@ -456,7 +446,7 @@ special
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Description of Fields.
     </caption>
@@ -512,18 +502,13 @@ special
   </table>
   <p>Proper offset and stride must be used to extract field data for whole profiles.<br>
   <em>Example:</em> Extracting the x-z-data of all points in stripe 1 needs to extract every 16th quadlet starting from the 2nd quadlet.</p>
-  <p>Each post processing module takes the number of its input stripe 
-and of its output stripe as arguments. If the results are not a profile 
-but a
-  block of feature data, an additional offset inside a stripe can be 
-used to concatenate several result blocks into a single stripe.</p>
+  <p>Each post processing module takes the number of its input stripe and of its output stripe as arguments. If the results are not a profile but a
+  block of feature data, an additional offset inside a stripe can be used to concatenate several result blocks into a single stripe.</p>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="param" id="param">Module Parameter Queue</a></h2>
-  <p>The post processing of profile data uses a queue of successive 
-blocks. Each block describes one step of processing and may use the 
-results of a
+  <p>The post processing of profile data uses a queue of successive blocks. Each block describes one step of processing and may use the results of a
   previous step as input.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The Module Parameter Queue: General Structure.
     </caption>
@@ -566,7 +551,7 @@ results of a
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The Module Parameter Queue: Structure of the Header Quadlet.
     </caption>
@@ -589,7 +574,7 @@ results of a
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The Header Quadlet: Description of Fields.
     </caption>
@@ -637,15 +622,12 @@ results of a
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="result" id="result">Module Result Queue</a></h2>
-  <p>If the result of a post processing module is not a complete 
-profile, results of several modules should be concatenated into a single
- stripe
-  using the offset field in the header quadlet of the corresponding 
-block in the module parameter queue. The results reside only in the
+  <p>If the result of a post processing module is not a complete profile, results of several modules should be concatenated into a single stripe
+  using the offset field in the header quadlet of the corresponding block in the module parameter queue. The results reside only in the
   position/distance fields of the target stripe.<br>
   <em>Example:</em> If the destination stripe is stripe 4, the result queue can be extracted by taking every 16th quadlet starting from the 14th
   until the end of queue header is reached.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The Module Result Queue: General Structure.
     </caption>
@@ -688,7 +670,7 @@ block in the module parameter queue. The results reside only in the
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The Module Result Queue: Structure of the Header Quadlet.
     </caption>
@@ -711,7 +693,7 @@ block in the module parameter queue. The results reside only in the
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The Header Quadlet: Description of Fields.
     </caption>
@@ -757,11 +739,9 @@ block in the module parameter queue. The results reside only in the
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="pan" id="pan">Accessing the Module Parameter Queue with the PAN Register</a></h2>
-  <p>The PAN-register defined in the <a href="http://www.1394ta.org/">HDC 1394-based Digital Camera Specification Version 1.30 (July 25, 2000)</a>
- can
-  be used to write to the module parameter queue. The actual access to 
-the queue needs a sequence of successive writes to the PAN-register.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <p>The PAN-register defined in the <a href="http://www.1394ta.org">HDC 1394-based Digital Camera Specification Version 1.30 (July 25, 2000)</a> can
+  be used to write to the module parameter queue. The actual access to the queue needs a sequence of successive writes to the PAN-register.</p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Value field of the PAN-Register.
     </caption>
@@ -778,7 +758,7 @@ the queue needs a sequence of successive writes to the PAN-register.</p>
       </tr>
     </tbody>
   </table>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The PAN-Register: Description of Fields.
     </caption>
@@ -807,7 +787,7 @@ the queue needs a sequence of successive writes to the PAN-register.</p>
       </tr>
     </tbody>
   </table>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       The PAN-Register: Commands.
     </caption>
@@ -824,9 +804,7 @@ the queue needs a sequence of successive writes to the PAN-register.</p>
       </tr>
       <tr>
         <td>1</td>
-        <td>Write one byte (the data field) at the current pointer 
-position and move the pointer 1 byte position towards the end of the 
-queue</td>
+        <td>Write one byte (the data field) at the current pointer position and move the pointer 1 byte position towards the end of the queue</td>
       </tr>
       <tr>
         <td>2</td>
@@ -845,25 +823,18 @@ queue</td>
   </table><br>
   <strong>Remarks:</strong>
   <ul>
-    <li>The toggle bit ensures that every write access to the 
-PAN-register results in only one access to the queue, also if the actual
- access on the
-    firewire bus is repeated because of lost packets or because the 
-underlying driver submits several writes. To synchronize, the first two 
-writes to
+    <li>The toggle bit ensures that every write access to the PAN-register results in only one access to the queue, also if the actual access on the
+    firewire bus is repeated because of lost packets or because the underlying driver submits several writes. To synchronize, the first two writes to
     the PAN register should always be <tt>000</tt> followed by <tt>256</tt>.</li>
     <li>The byte ordering inside of quadlets is <em>Most Significant First</em>.</li>
-    <li>To prevent race conditions between the byte access to the 
-parameter queue and the post processing itself the processing is 
-suspended as long
-    as the write pointer does not point to the beginning of the queue. 
-Therefore, the last write should always be <tt>000</tt> (or <tt>256</tt>
+    <li>To prevent race conditions between the byte access to the parameter queue and the post processing itself the processing is suspended as long
+    as the write pointer does not point to the beginning of the queue. Therefore, the last write should always be <tt>000</tt> (or <tt>256</tt>
     depending on the state of the toggle bit).</li>
   </ul>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m0" id="m0">Module 0: End of Queue</a></h2>
   <p>This special module indicates the end of the queue.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       End of Queue: Module Parameter Block.
     </caption>
@@ -886,7 +857,7 @@ Therefore, the last write should always be <tt>000</tt> (or <tt>256</tt>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       End of Queue: Module Result Block.
     </caption>
@@ -909,7 +880,7 @@ Therefore, the last write should always be <tt>000</tt> (or <tt>256</tt>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       End of Queue: Description of Fields.
     </caption>
@@ -930,12 +901,9 @@ Therefore, the last write should always be <tt>000</tt> (or <tt>256</tt>
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m1" id="m1">Module 1: Cut</a></h2>
-  <p>The cut module provides 2D-clipping. It marks points that lie 
-outside a specific rectangular window as invalid. The ordering of points
- remains
-  unchanged. The module takes one profile as input and outputs the 
-clipped profile.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <p>The cut module provides 2D-clipping. It marks points that lie outside a specific rectangular window as invalid. The ordering of points remains
+  unchanged. The module takes one profile as input and outputs the clipped profile.</p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Cut: Module Parameter Block.
     </caption>
@@ -966,7 +934,7 @@ clipped profile.</p>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Cut: Module Parameter Block (extended).
     </caption>
@@ -1002,7 +970,7 @@ clipped profile.</p>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Cut: Description of Fields.
     </caption>
@@ -1059,26 +1027,21 @@ clipped profile.</p>
   <p><em>All boundaries must be scaled to 16bit values using the same scaling as for profile points.</em></p>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m2" id="m2">Module 2: Bead Finder</a></h2>
-  <p>The bead finder module extracts characteristics of a bead or a 
-similar geometrical feature. Its algorithm subdivides into four steps:</p>
+  <p>The bead finder module extracts characteristics of a bead or a similar geometrical feature. Its algorithm subdivides into four steps:</p>
   <ol>
     <li>detection of anchor point</li>
     <li>detection of reference lines</li>
     <li>detection of bead</li>
     <li>calculate characteristics of bead</li>
-  </ol>Step 2. may involve an outlier rejection algorithm. If the 
-outlier rejection threshold is greater than 0 then&nbsp;approximate 
-reference lines
-  will be fitted to all points in the reference ranges. The final 
-reference lines fit only to those points&nbsp;having a&nbsp;distance 
-from the
+  </ol>Step 2. may involve an outlier rejection algorithm. If the outlier rejection threshold is greater than 0 then&nbsp;approximate reference lines
+  will be fitted to all points in the reference ranges. The final reference lines fit only to those points&nbsp;having a&nbsp;distance from the
   approximate lines smaller than the rejection threshold.<br>
   <br>
   See the data sheet or manual for the scan<acronym>CONTROL</acronym>&nbsp;2810 (German x9750149.pdf, English x9751149.pdf) for a detailed
   description.<br>
   <em>The bead finder algorithm uses the 3rd stripe as scratch space. Do not use th 3rd stripe as source or destination.<br>
   <br></em>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Bead Finder: Module Parameter Block.
     </caption>
@@ -1159,7 +1122,7 @@ from the
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Bead Finder: Parameter Fields.
     </caption>
@@ -1216,9 +1179,7 @@ from the
       <tr>
         <td>15-15</td>
         <td>fg</td>
-        <td>ignore points having z=1 or z=65535 (sensor units) during 
-calculation of references, &nbsp;intended for use in conjunction with 
-filter
+        <td>ignore points having z=1 or z=65535 (sensor units) during calculation of references, &nbsp;intended for use in conjunction with filter
         modules of <a href="#m5">FillGaps</a> and <a href="#m5">FillGapsAll</a> filter types</td>
         <td>2</td>
       </tr>
@@ -1394,11 +1355,9 @@ filter
       </tr>
     </tbody>
   </table>
-  <p><em>All ranges, offsets and thresholds must be scaled to 16bit 
-values using only the scaling factor for profile points. Note that the 
-range
+  <p><em>All ranges, offsets and thresholds must be scaled to 16bit values using only the scaling factor for profile points. Note that the range
   offset and the two thresholds are signed.</em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Bead Finder: Module Result Block.
     </caption>
@@ -1506,7 +1465,7 @@ range
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Bead Finder: Result Fields.
     </caption>
@@ -1709,30 +1668,18 @@ range
       </tr>
     </tbody>
   </table>
-  <p><em>The anchor point, reference levels, standard deviations and 
-co-ordinates of the bead must be scaled from 16bit/32bit values using 
-the same
-  scaling as for profile points. The area scales with the scaling factor
- squared.</em></p>
-  <p><sup>(*)</sup> Backward compatibility: The length of the result 
-block depends on the settings for the calculation of the intersection 
-point
-  and/or calculation of the center of gravity points. If both bits are 
-unset then the result block will have only 19 quadlets as in previous 
-versions
+  <p><em>The anchor point, reference levels, standard deviations and co-ordinates of the bead must be scaled from 16bit/32bit values using the same
+  scaling as for profile points. The area scales with the scaling factor squared.</em></p>
+  <p><sup>(*)</sup> Backward compatibility: The length of the result block depends on the settings for the calculation of the intersection point
+  and/or calculation of the center of gravity points. If both bits are unset then the result block will have only 19 quadlets as in previous versions
   of the bead finder module.</p>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m3" id="m3">Module 3: Formula</a></h2>
-  <p>The formula module offers a flexible way to process the results 
-from other modules. It provides 32 internal registers (32bit) and a set 
-of
-  function primitives to load, write, add, subtract, shift and compare 
-these registers. Each function primitive occupies one quadlet in the 
-module
-  parameter block. Depending on the number of primitive operations 
-necessary to complete the actual task the parameter block has a variable
+  <p>The formula module offers a flexible way to process the results from other modules. It provides 32 internal registers (32bit) and a set of
+  function primitives to load, write, add, subtract, shift and compare these registers. Each function primitive occupies one quadlet in the module
+  parameter block. Depending on the number of primitive operations necessary to complete the actual task the parameter block has a variable
   length.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Formula: Module Parameter Block.
     </caption>
@@ -1776,7 +1723,7 @@ necessary to complete the actual task the parameter block has a variable
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Formula: Parameter Fields.
     </caption>
@@ -1810,11 +1757,9 @@ necessary to complete the actual task the parameter block has a variable
       </tr>
     </tbody>
   </table>
-  <p>The formula module provides 32 logical output channels (16bit). The
- mapping of the logical channels to the physical ports is fixed but 
-depends
+  <p>The formula module provides 32 logical output channels (16bit). The mapping of the logical channels to the physical ports is fixed but depends
   on the used hardware.&nbsp;</p>
-  <table id="portmapping" frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table id="portmapping" border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Formula: Port mapping of the output channels.
     </caption>
@@ -1880,7 +1825,7 @@ depends
   </table>
   <p><a name="func_example" id="func_example">The example below illustrates the concept. The formula module loads the two reference orientations
   calculated by a previous bead finder module, calculates the angular deviation and outputs the result to the analogue port.</a></p>
-  <table id="Table1" frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table id="Table1" border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Formula: Module parameter block (example).
     </caption>
@@ -1925,7 +1870,7 @@ depends
     </tbody>
   </table>
   <p>The following function primitives are available:</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Formula: List of function primitives.
     </caption>
@@ -2129,7 +2074,7 @@ depends
   </table>
   <h3><a name="func_load" id="func_load">Formula: Function load</a></h3>
   <p>Loads a value from the result queue into a register. Loads entire 32 bit or the upper 16bit with shift.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function load: Quadlet.
     </caption>
@@ -2162,7 +2107,7 @@ depends
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function load: Description of Fields.
     </caption>
@@ -2219,11 +2164,9 @@ depends
     </tbody>
   </table>
   <h3><a name="func_load-write" id="func_load-write">Formula: Function load-write</a></h3>
-  <p>Writes a value from the result queue directly to an output. Outputs
- are only 16 bit wide, so the loaded value must be shifted into the 
-upper 16
+  <p>Writes a value from the result queue directly to an output. Outputs are only 16 bit wide, so the loaded value must be shifted into the upper 16
   bits.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function load-write: Quadlet.
     </caption>
@@ -2256,7 +2199,7 @@ upper 16
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function load-write: Description of Fields.
     </caption>
@@ -2322,10 +2265,8 @@ upper 16
     </tbody>
   </table>
   <h3><a name="func_load-const" id="func_load-const">Formula: Function load-const</a></h3>
-  <p>Loads a given constant value into a register. Loads only 16bit at 
-once. To initialise 32bit set the upper 16bit first, then the lower 
-16bit.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <p>Loads a given constant value into a register. Loads only 16bit at once. To initialise 32bit set the upper 16bit first, then the lower 16bit.</p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function load-const: Quadlet.
     </caption>
@@ -2355,7 +2296,7 @@ once. To initialise 32bit set the upper 16bit first, then the lower
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function load-const: Description of Fields.
     </caption>
@@ -2397,14 +2338,10 @@ once. To initialise 32bit set the upper 16bit first, then the lower
     </tbody>
   </table>
   <h3><a name="func_compare" id="func_compare">Formula: Function compare</a></h3>
-  <p>Compares two registers and stores the result in the destination 
-register. First, the comparison yields an intermediate result according 
-to the
-  lt, gt and eq fields (disjunction). Second, the intermediate result 
-overwrites or updates the destination register. Sets or updates the 
-upper
+  <p>Compares two registers and stores the result in the destination register. First, the comparison yields an intermediate result according to the
+  lt, gt and eq fields (disjunction). Second, the intermediate result overwrites or updates the destination register. Sets or updates the upper
   16bits with 0 or 1.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function compare: Quadlet.
     </caption>
@@ -2440,7 +2377,7 @@ upper
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function compare: Description of Fields.
     </caption>
@@ -2517,9 +2454,9 @@ upper
   </table>
   <h3><a name="func_if-write" id="func_if-write">Formula: Function if-write</a></h3>
   <p>Writes a value from source register to an output only if the flag register does not equal to zero.<br>
-  <em>There is no write-always function. Loading 1 into the upper 16bits
- of the flag register results in an unconditional write (compare <a href="#func_example">example</a> above).</em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <em>There is no write-always function. Loading 1 into the upper 16bits of the flag register results in an unconditional write (compare <a href=
+  "#func_example">example</a> above).</em></p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-write: Quadlet.
     </caption>
@@ -2535,7 +2472,7 @@ upper
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-write: Description of Fields.
     </caption>
@@ -2592,7 +2529,7 @@ upper
   </table>
   <h3><a name="func_add" id="func_add">Formula: Function add</a></h3>
   <p>Adds or subtracts two registers.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function add: Quadlet.
     </caption>
@@ -2626,7 +2563,7 @@ upper
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function add: Description of Fields.
     </caption>
@@ -2682,7 +2619,7 @@ upper
   </table>
   <h3><a name="func_shift" id="func_shift">Formula: Function shift</a></h3>
   <p>Shifts a register stores the result in the destination register.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function shift: Quadlet.
     </caption>
@@ -2715,7 +2652,7 @@ upper
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function shift: Description of Fields.
     </caption>
@@ -2765,14 +2702,10 @@ upper
     </tbody>
   </table>
   <h3><a name="func_write-serial" id="func_write-serial">Formula: Function if-write-serial</a></h3>
-  <p>Writes a value from a source register to the serial output only if 
-the flag register does not equal to zero. The&nbsp;value is output as 
-decimal
-  integer with optional padding on the left and an optional trailing 
-string of up to 4 characters.&nbsp;Using several if-write-serial 
-primitives in
+  <p>Writes a value from a source register to the serial output only if the flag register does not equal to zero. The&nbsp;value is output as decimal
+  integer with optional padding on the left and an optional trailing string of up to 4 characters.&nbsp;Using several if-write-serial primitives in
   one formula module builds longer&nbsp;strings with several values.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function write-serial: Quadlet.
     </caption>
@@ -2806,7 +2739,7 @@ primitives in
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-write-serial: Description of Fields.
     </caption>
@@ -2869,12 +2802,11 @@ primitives in
       </tr>
     </tbody>
   </table><br>
-  The output string of one formula module must not be longer than 80 
-characters. The string is send at the end of the module's execution.<br>
+  The output string of one formula module must not be longer than 80 characters. The string is send at the end of the module's execution.<br>
   If the string of a previously executed formula module is still being transmitted the newly built string is discarded.<br>
   <h3><a name="func_mul-div" id="func_mul-div">Formula: Function multiply</a></h3>
   <p>Multiplies or divides two registers.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function multiply: Quadlet.
     </caption>
@@ -2910,7 +2842,7 @@ characters. The string is send at the end of the module's execution.<br>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function mul-div: Description of Fields.
     </caption>
@@ -2977,7 +2909,7 @@ characters. The string is send at the end of the module's execution.<br>
   <h3><a name="func_if-store" id="func_if-store">Formula: Function if-store</a></h3>
   <p>Writes a value from the source register to&nbsp;the persistent memory if the flag register does not equal to zero.<br>
   <em>There is no store-always function. Loading 1 into the upper 16bits of the flag register results in an unconditional store.</em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-store: Quadlet.
     </caption>
@@ -3007,7 +2939,7 @@ characters. The string is send at the end of the module's execution.<br>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-store: Description of Fields.
     </caption>
@@ -3049,7 +2981,7 @@ characters. The string is send at the end of the module's execution.<br>
   <h3><a name="func_if-recall" id="func_if-recall">Formula: Function if-recall</a></h3>
   <p>Reads a value from the persistent memory into the destination register&nbsp;if the flag register does not equal to zero.<br>
   <em>There is no recall-always function. Loading 1 into the upper 16bits of the flag register results in an unconditional recall.</em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-recall: Quadlet.
     </caption>
@@ -3079,7 +3011,7 @@ characters. The string is send at the end of the module's execution.<br>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-recall: Description of Fields.
     </caption>
@@ -3119,18 +3051,15 @@ characters. The string is send at the end of the module's execution.<br>
     </tbody>
   </table>
   <h3><a name="func_if-call-module" id="func_if-call-module">Formula: Function if-call-module</a></h3>
-  <p>Executes a module with its parameter block starting at 
-the&nbsp;specified location in the persistent memory if the flag 
-register does not equal
+  <p>Executes a module with its parameter block starting at the&nbsp;specified location in the persistent memory if the flag register does not equal
   to zero.<br>
   Only the following modules are allowed to be called:<br></p>
   <ul>
     <li><a href="#m1">Module 1: Cut</a></li>
     <li><a href="#m5">Module 5: Filter</a></li>
   </ul>
-  <p><em>There is no&nbsp;call-always function. Loading 1 into the upper
- 16bits of the flag register results in an unconditional&nbsp;call.</em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <p><em>There is no&nbsp;call-always function. Loading 1 into the upper 16bits of the flag register results in an unconditional&nbsp;call.</em></p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-call-module: Quadlet.
     </caption>
@@ -3160,7 +3089,7 @@ register does not equal
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-call-module: Description of Fields.
     </caption>
@@ -3196,7 +3125,7 @@ register does not equal
   </table>
   <h3><a name="func_if-copy" id="func_if-copy">Formula: Function if-copy</a></h3>
   <p>Copies either the first source register ore the second one into&nbsp;the destination depending on the flag register. <em><br></em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-copy: Quadlet.
     </caption>
@@ -3227,7 +3156,7 @@ register does not equal
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-copy: Description of Fields.
     </caption>
@@ -3272,10 +3201,9 @@ register does not equal
     </tbody>
   </table>
   <h3><a name="func_root-square-add" id="func_root-square-add">Formula: Function root-square-add</a></h3>
-  <p>Adds or subtracts the squares of two registers and calculates the 
-square root of the absolute value of the sum. The result is always
+  <p>Adds or subtracts the squares of two registers and calculates the square root of the absolute value of the sum. The result is always
   positive.&nbsp;</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function root-square-add: Quadlet.
     </caption>
@@ -3309,7 +3237,7 @@ square root of the absolute value of the sum. The result is always
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function root-square-add: Description of Fields.
     </caption>
@@ -3377,7 +3305,7 @@ square root of the absolute value of the sum. The result is always
       </ol>
     </li>
   </ul>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function save: Quadlet.
     </caption>
@@ -3409,7 +3337,7 @@ square root of the absolute value of the sum. The result is always
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function save: Description of Fields.
     </caption>
@@ -3457,7 +3385,7 @@ square root of the absolute value of the sum. The result is always
   </table>
   <h3><a name="func_rotate-point" id="func_rotate-point">Formula: Function rotate-point</a></h3>
   <p>Rotates a point around a center point. <em><br></em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function rotate-point: Quadlet.
     </caption>
@@ -3488,7 +3416,7 @@ square root of the absolute value of the sum. The result is always
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function rotate-point: Description of Fields.
     </caption>
@@ -3518,9 +3446,7 @@ square root of the absolute value of the sum. The result is always
       <tr>
         <td>14-10</td>
         <td>reg4</td>
-        <td>rotational center register,&nbsp;the rotational centre 
-becomes the point x=32768, z=32768 after rotation,&nbsp;upper 16 bits 
-contain x,
+        <td>rotational center register,&nbsp;the rotational centre becomes the point x=32768, z=32768 after rotation,&nbsp;upper 16 bits contain x,
         lower 16 bits contain z</td>
       </tr>
       <tr>
@@ -3536,23 +3462,16 @@ contain x,
     </tbody>
   </table>
   <h3><a name="func_if-init-temporal-filter" id="func_if-init-temporal-filter">Formula: Function if-init-temporal-filter</a></h3>
-  <p>Sets up a temporal filter if the flag register does not equal to 
-zero. The formula module provides a memory block of 2048 words for 
-temporal
+  <p>Sets up a temporal filter if the flag register does not equal to zero. The formula module provides a memory block of 2048 words for temporal
   filtering. Each filter consumes a block depending on the filter width:</p>
   <ul>
     <li>width + 1 words for 32bit filters</li>
     <li>(width+1)/2 + 1 for 16bit filters</li>
   </ul>
-  <p>The filter block must be set up before the filter can be used. 
-Because there is no set up procedure in fomula, the filter can be 
-cleared only if
-  the filter specification changes. This way, the filter is set up only 
-after boot and the if-init-temporal-filter command is ignored in 
-subsequent
-  passes of the formula module. Alternatively, the flag register can be 
-used to selectively&nbsp;initialize the filter.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <p>The filter block must be set up before the filter can be used. Because there is no set up procedure in fomula, the filter can be cleared only if
+  the filter specification changes. This way, the filter is set up only after boot and the if-init-temporal-filter command is ignored in subsequent
+  passes of the formula module. Alternatively, the flag register can be used to selectively&nbsp;initialize the filter.</p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-init-temporal-filter: Quadlet.
     </caption>
@@ -3586,7 +3505,7 @@ used to selectively&nbsp;initialize the filter.</p>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-init-temporal-filter: Description of Fields.
     </caption>
@@ -3634,26 +3553,19 @@ used to selectively&nbsp;initialize the filter.</p>
         <td>
           filter type:<br>
           <ol start="0">
-            <li>delay: delays like the other filters but returns 
-original values. It takes always the value from the middle of the stored
- values. If
-            the number of stored values is even, the latest value is 
-ignored.</li>
+            <li>delay: delays like the other filters but returns original values. It takes always the value from the middle of the stored values. If
+            the number of stored values is even, the latest value is ignored.</li>
             <li>reserved</li>
             <li>average, signed: sums all stored values (signed) and divides by the number of values.</li>
             <li>average, unsigned</li>
-            <li>median, signed: sorts all stored values (signed) and 
-takes the value in the middle of the sorted list. If the number of 
-stored values
+            <li>median, signed: sorts all stored values (signed) and takes the value in the middle of the sorted list. If the number of stored values
             is even, the latest value is ignored.</li>
             <li>median, unsigned</li>
             <li>minimum, signed: searches for the minimum of all stored values (signed).</li>
             <li>minimum, unsigned</li>
             <li>maximum, signed: searches for the maximum of all stored values (signed).</li>
             <li>maximum, unsigned</li>
-            <li>store: only stores the original values but returns the 
-value with the same index that was found by another filter (max, min, 
-median).
+            <li>store: only stores the original values but returns the value with the same index that was found by another filter (max, min, median).
             The filters can be linked via the link number.</li>
             <li>reserved</li>
             <li>reserved</li>
@@ -3681,21 +3593,12 @@ median).
     </tbody>
   </table>
   <h3><a name="func_if-temporal-filter" id="func_if-temporal-filter">Formula: Function if-temporal-filter</a></h3>
-  <p>Puts a value into the filter and returns the filtered value if the 
-flag register does not equal to zero. The new value is put into the 
-filter
-  first, the return value is calculated including this new value. If the
- filter contains less values than specified by the size parameter, it 
-will
-  grow up to the specified size. It will act like a smaller filter until
- then. A full filter has always an uneven number of values to act on. If
- the
-  filter contains less values, then the median and the delay filter only
- store but ignore the latest value for processing if the number of 
-values is
-  even. This is due to how this types of filters work (taking the middle
- value).&nbsp;</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <p>Puts a value into the filter and returns the filtered value if the flag register does not equal to zero. The new value is put into the filter
+  first, the return value is calculated including this new value. If the filter contains less values than specified by the size parameter, it will
+  grow up to the specified size. It will act like a smaller filter until then. A full filter has always an uneven number of values to act on. If the
+  filter contains less values, then the median and the delay filter only store but ignore the latest value for processing if the number of values is
+  even. This is due to how this types of filters work (taking the middle value).&nbsp;</p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-temporal-filter: Quadlet.
     </caption>
@@ -3726,7 +3629,7 @@ values is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function if-temporal-filter: Description of Fields.
     </caption>
@@ -3772,7 +3675,7 @@ values is
   </table>
   <h3><a name="func_project-point" id="func_project-point">Formula: Function project-point</a></h3>
   <p>Projects the source point onto a line and returns the projected point. <em><br></em></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function project-point: Quadlet.
     </caption>
@@ -3804,7 +3707,7 @@ values is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Function project-point: Description of Fields.
     </caption>
@@ -3860,7 +3763,7 @@ values is
   <p>The GetOutput module reads back the latest values written to output channels and writes them to the result block.<br>
   This Module&nbsp;supports only the physically available ports of&nbsp;scan<acronym>CONTROL</acronym>&nbsp;2810. Consult <a href="#m4Ex">Module 4:
   GetOutputExtended</a> for an extended version.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutput: Module Parameter Block.
     </caption>
@@ -3883,7 +3786,7 @@ values is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutput: Parameter Fields.
     </caption>
@@ -3912,7 +3815,7 @@ values is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutput: Module Result Block.
     </caption>
@@ -3949,7 +3852,7 @@ values is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutput: Result Fields.
     </caption>
@@ -3990,12 +3893,10 @@ values is
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m4Ex" id="m4Ex">Module 4: GetOutputExtended</a></h2>
-  <p>The GetOutputExtended module reads back the latest values written 
-to output channels and writes them to the result block. The number of 
-channels
+  <p>The GetOutputExtended module reads back the latest values written to output channels and writes them to the result block. The number of channels
   to include can be specified.<br>
   The numbering of channels conforms to the write functions of the formula module above.<br></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutputExtended: Module Parameter Block.
     </caption>
@@ -4023,7 +3924,7 @@ channels
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutputExtended: Parameter Fields.
     </caption>
@@ -4057,7 +3958,7 @@ channels
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutputExtended: Module Result Block.
     </caption>
@@ -4098,7 +3999,7 @@ channels
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetOutputExtended: Result Fields.
     </caption>
@@ -4139,34 +4040,22 @@ channels
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m5" id="m5">Module 5: Filter</a></h2>
-  <p>This module provides various functions for filtering profiles. The 
-filters take one profile in the source stripe and output a filtered 
-profile
-  into another stripe. The module parameter block consists of at least 
-two quadlets, the header quadlet and one parameter quadlet. Additional
+  <p>This module provides various functions for filtering profiles. The filters take one profile in the source stripe and output a filtered profile
+  into another stripe. The module parameter block consists of at least two quadlets, the header quadlet and one parameter quadlet. Additional
   parameter quadlets may follow depending on the selected filter type.</p>
   <p>It is possible to use the same stripe for input and output. Depending on the filter type, there are additional considerations:</p>
   <ul>
-    <li>The Resample, Average and Median type filters generally run 
-faster with different&nbsp;stripes. The same stripe may be used, but 
-then the
-    algorithm will use the neighbouring stripe as temporary scratch 
-space.<br>
-    Example: if stripe 1 ist filtered into stripe 1 then stripe 2 will 
-be destroyed, if stripe 2 is filtered in place then stripe 1 will be
+    <li>The Resample, Average and Median type filters generally run faster with different&nbsp;stripes. The same stripe may be used, but then the
+    algorithm will use the neighbouring stripe as temporary scratch space.<br>
+    Example: if stripe 1 ist filtered into stripe 1 then stripe 2 will be destroyed, if stripe 2 is filtered in place then stripe 1 will be
     destroyed.</li>
-    <li>Copy, Math &nbsp;and FillGaps type filters do not need scratch 
-space. They can be used with different stripes or in place as well. They
- run
+    <li>Copy, Math &nbsp;and FillGaps type filters do not need scratch space. They can be used with different stripes or in place as well. They run
     faster in place in most cases.</li>
-    <li>Stripe 4 contains the time stamp. The filter module respects it.
- This means that the very last point of the profile will be lost if the
-    destination stripe is 4. Accordingly, the module will 
-generate&nbsp;an invalid point as new last point if the source stripe is
- 4. It is generally
+    <li>Stripe 4 contains the time stamp. The filter module respects it. This means that the very last point of the profile will be lost if the
+    destination stripe is 4. Accordingly, the module will generate&nbsp;an invalid point as new last point if the source stripe is 4. It is generally
     not recomended to use the fourth stripe as source or destination.</li>
   </ul>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Filter: Module Parameter Block.
     </caption>
@@ -4227,7 +4116,7 @@ generate&nbsp;an invalid point as new last point if the source stripe is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Filter: Parameter Fields.
     </caption>
@@ -4282,7 +4171,7 @@ generate&nbsp;an invalid point as new last point if the source stripe is
     </tbody>
   </table>
   <p>The filter module does not produce a result block.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Filter: Available Filter types.
     </caption>
@@ -4300,10 +4189,9 @@ generate&nbsp;an invalid point as new last point if the source stripe is
         <td>Resample</td>
         <td>x, f, algorithm, parameter&nbsp;2</td>
         <td>
-          resamples the profile to have equally spaced points inside a 
-range from MinX to MaxX, keeps the point with larger distance in case of
+          resamples the profile to have equally spaced points inside a range from MinX to MaxX, keeps the point with larger distance in case of
           ambiguity. Parameters:<br>
-          <table frame="none" rules="rows" cellspacing="1" cellpadding="3" border="1">
+          <table border="1" cellpadding="3" cellspacing="1" frame="none" rules="rows">
             <tbody>
               <tr>
                 <td>x</td>
@@ -4362,7 +4250,7 @@ range from MinX to MaxX, keeps the point with larger distance in case of
         <td>x, f</td>
         <td>
           copies the field z:<br>
-          <table frame="none" rules="rows" cellspacing="1" cellpadding="3" border="1">
+          <table border="1" cellpadding="3" cellspacing="1" frame="none" rules="rows">
             <tbody>
               <tr>
                 <td>x</td>
@@ -4382,7 +4270,7 @@ range from MinX to MaxX, keeps the point with larger distance in case of
         <td>x, f</td>
         <td>
           copies all fields:<br>
-          <table frame="none" rules="rows" cellspacing="1" cellpadding="3" border="1">
+          <table border="1" cellpadding="3" cellspacing="1" frame="none" rules="rows">
             <tbody>
               <tr>
                 <td>x</td>
@@ -4402,7 +4290,7 @@ range from MinX to MaxX, keeps the point with larger distance in case of
         <td>algorithm</td>
         <td>
           applies a mathematical function in a point wise manner<br>
-          <table frame="none" rules="rows" cellspacing="1" cellpadding="3" border="1">
+          <table border="1" cellpadding="3" cellspacing="1" frame="none" rules="rows">
             <thead align="left">
               <tr>
                 <th>algorithm</th>
@@ -4416,10 +4304,8 @@ range from MinX to MaxX, keeps the point with larger distance in case of
               </tr>
               <tr>
                 <td align="center">128</td>
-                <td>rotates the source profile by a specific angle, 
-parameter 2 contains the rotational centre (upper bits x, lower bits z),
-                parameter 3 contains the angle (lower 16 bits), the 
-rotational centre becomes the point x=32768, z=32768 sensor units in the
+                <td>rotates the source profile by a specific angle, parameter 2 contains the rotational centre (upper bits x, lower bits z),
+                parameter 3 contains the angle (lower 16 bits), the rotational centre becomes the point x=32768, z=32768 sensor units in the
                 resulting profile,<br>
                 bits 31..30 determine, how subsequent modules treat the result with respect to the order of the profile points:<br>
                 00<sub>b</sub>: do not change the order<br>
@@ -4447,7 +4333,7 @@ rotational centre becomes the point x=32768, z=32768 sensor units in the
         parameter 5</td>
         <td>
           This filter type has two shapes depending on the parameter block length.<br>
-          <table frame="none" rules="rows" cellspacing="1" cellpadding="3" border="1">
+          <table border="1" cellpadding="3" cellspacing="1" frame="none" rules="rows">
             <thead align="left">
               <tr>
                 <th>length</th>
@@ -4464,16 +4350,11 @@ rotational centre becomes the point x=32768, z=32768 sensor units in the
                 <td>6</td>
                 <td>Parameter 2 and 3 define MinX and MinZ respectively, parameter 4 contains the range width (upper 16 bit) and range height (lower
                 16bit).<br>
-                Parameter 5 contains&nbsp; the stripe number (bits 14 
-and 15) and strip offset (bits 0..13) where the anchor is taken from.<br>
+                Parameter 5 contains&nbsp; the stripe number (bits 14 and 15) and strip offset (bits 0..13) where the anchor is taken from.<br>
                 t determines the dynamic tracing:<br>
                 <tt>t=0<sub>b</sub></tt>: static, no external tracing, the range values above are absolute sensor coordinates<br>
-                <tt>t=1<sub>b</sub></tt>: dynamic tracing, the anchor 
-point is read from previous result using stripe and quadlett offset 
-fields, the
-                range values above will be shifted by this anchor point.
- If the anchor point is invalid, then an empty profile (all points 
-invalid)
+                <tt>t=1<sub>b</sub></tt>: dynamic tracing, the anchor point is read from previous result using stripe and quadlett offset fields, the
+                range values above will be shifted by this anchor point. If the anchor point is invalid, then an empty profile (all points invalid)
                 will be output.</td>
               </tr>
             </tbody>
@@ -4495,24 +4376,16 @@ invalid)
         <td>FillGap</td>
         <td>algorithm, x, f, parameter&nbsp;2</td>
         <td>
-          fills the largest gap with one or two new points if it 
-consists of at least one invalid point and if it is larger or equal to 
-the minimum
-          size (upper 16 bits of parameter 2); the generated points 
-reside at a distance of zo (lower 16 bits of parameter 2), their x 
-positions are
-          copied from the adjacent valid point; if only one point is 
-generated (single invalid point gap) then the x coordinate is the 
-average of the
-          adjacent points. The algorithm parameter determines how gaps 
-are compared to find the largest one. Note, only&nbsp;the largest gap is
-          considered. If it does not contain at least one invalid point,
- no new points will be generated.<br>
+          fills the largest gap with one or two new points if it consists of at least one invalid point and if it is larger or equal to the minimum
+          size (upper 16 bits of parameter 2); the generated points reside at a distance of zo (lower 16 bits of parameter 2), their x positions are
+          copied from the adjacent valid point; if only one point is generated (single invalid point gap) then the x coordinate is the average of the
+          adjacent points. The algorithm parameter determines how gaps are compared to find the largest one. Note, only&nbsp;the largest gap is
+          considered. If it does not contain at least one invalid point, no new points will be generated.<br>
           comparison algorithm:<br>
           0 = euklidian distance<br>
           1 = absolute x distance<br>
           2 = absolute z distance
-          <table frame="none" rules="rows" cellspacing="1" cellpadding="3" border="1">
+          <table border="1" cellpadding="3" cellspacing="1" frame="none" rules="rows">
             <tbody>
               <tr>
                 <td>x</td>
@@ -4565,25 +4438,18 @@ are compared to find the largest one. Note, only&nbsp;the largest gap is
   </table><br>
   <strong>Remarks:</strong>
   <ul>
-    <li>The Median and Average filters do not preserve edges. They 
-output a valid point only if all points in the filter window are valid.</li>
+    <li>The Median and Average filters do not preserve edges. They output a valid point only if all points in the filter window are valid.</li>
     <li>The Resample filter is recommended to generate interpolated points. It interpolates z-coordinates and generates appropriate
     x-coordinates.</li>
-    <li>The Copy-filter may be used to fill holes in the profile. The 
-filter generates points with a valid z-coordinate and an x-coordinate x =
- 0.
-    These points should be used only in conjuction with a subsequent 
-Median- or Average-Filter. The generated points should not be used for
-    subsequent profile processing like Beadfinder etc. They should be 
-made invalid with an appropriate Clip-filter before further processing.</li>
+    <li>The Copy-filter may be used to fill holes in the profile. The filter generates points with a valid z-coordinate and an x-coordinate x = 0.
+    These points should be used only in conjuction with a subsequent Median- or Average-Filter. The generated points should not be used for
+    subsequent profile processing like Beadfinder etc. They should be made invalid with an appropriate Clip-filter before further processing.</li>
   </ul>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m6" id="m6">Module 6: Comment</a></h2>
-  <p>The only purpose of the Comment module is to include an arbitrary 
-comment into the result queue. The contents of the module is copied 
-without
+  <p>The only purpose of the Comment module is to include an arbitrary comment into the result queue. The contents of the module is copied without
   any change.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Comment: Module Parameter Block.
     </caption>
@@ -4619,7 +4485,7 @@ without
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Comment: Parameter Fields.
     </caption>
@@ -4648,7 +4514,7 @@ without
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Comment: Module Result Block.
     </caption>
@@ -4688,7 +4554,7 @@ without
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m7" id="m7">Module 7: GetTimestamp</a></h2>
   <p>The GetTimestamp module reads and decodes the timestamp of the profile and writes it to the result block.<br></p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetTimestamp: Module Parameter Block.
     </caption>
@@ -4712,7 +4578,7 @@ without
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetTimestamp: Parameter Fields.
     </caption>
@@ -4741,7 +4607,7 @@ without
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetTimestamp: Module Result Block.
     </caption>
@@ -4785,7 +4651,7 @@ without
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetTimestamp: Result Fields.
     </caption>
@@ -4841,13 +4707,11 @@ without
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m8" id="m8">Module 8: WAGObuscoupler</a></h2>
-  <p>This module controls how a WAGO buscoupler device 750-339 or 
-750-841 is used as ouput channels. Currently only a compatibility mode 
-is
+  <p>This module controls how a WAGO buscoupler device 750-339 or 750-841 is used as ouput channels. Currently only a compatibility mode is
   supported. The compatibility mode is activated by default in the scan<acronym>CONTROL</acronym>&nbsp;2710 devices for the 750-339 and deactivated
   by default in the scan<acronym>CONTROL</acronym>&nbsp;2810 devices and for the 750-841. Th eethernet buscoupler z50-841 can be used only after a
   valid IP address has been configured.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       WAGObuscoupler: Module Parameter Block.
     </caption>
@@ -4879,7 +4743,7 @@ is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       WAGObuscoupler:&nbsp;Parameter&nbsp;Fields.
     </caption>
@@ -4918,7 +4782,7 @@ is
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m9" id="m9">Module 9: GetHoldingRegisters</a></h2>
   <p>This module reads back the contents of the Modbus holding registers.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetHoldingRegisters: Module Parameter Block.
     </caption>
@@ -4946,7 +4810,7 @@ is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetHoldingRegisters:&nbsp;Parameter&nbsp;Fields.
     </caption>
@@ -4980,7 +4844,7 @@ is
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetHoldingRegisters: Module Result Block.
     </caption>
@@ -5017,20 +4881,14 @@ is
   </table><br>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m10" id="m10">Module 10: Gap Finder</a></h2>
-  <p>This module finds the largest gap between two valid points in the 
-source profile. Largest gap means largest euklidian distance between two
-  subsequent valid points, regardless whether there are also invalid 
-points in the gap.</p>
-  <p>The Gap Finder fails only if the profile contains less than 2 valid
- points. All the results are set to zero in this case. Except for the
+  <p>This module finds the largest gap between two valid points in the source profile. Largest gap means largest euklidian distance between two
+  subsequent valid points, regardless whether there are also invalid points in the gap.</p>
+  <p>The Gap Finder fails only if the profile contains less than 2 valid points. All the results are set to zero in this case. Except for the
   x-coordinates of points which are set to 32768.</p>
-  <p>The left point will have a smaller x-coordinate than the 
-right&nbsp;point in most cases. The gap size x will be positive 
-accordingly. Only if
-  the profile is recurrent at the position of the gap, then the left 
-point will have a larger x-coordinate and hence the gap width will be
+  <p>The left point will have a smaller x-coordinate than the right&nbsp;point in most cases. The gap size x will be positive accordingly. Only if
+  the profile is recurrent at the position of the gap, then the left point will have a larger x-coordinate and hence the gap width will be
   negative.&nbsp;</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Gap Finder: Module Parameter Block.
     </caption>
@@ -5060,7 +4918,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Gap Finder:&nbsp;Parameter&nbsp;Fields.
     </caption>
@@ -5107,7 +4965,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Gap finder: Module Result Block.
     </caption>
@@ -5164,12 +5022,13 @@ point will have a larger x-coordinate and hence the gap width will be
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m11" id="m11">Module 11: GetInfo</a></h2>
   <p>This module provides various information about the sensor state.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetInfo: Module Parameter Block.
     </caption>
     <colgroup>
-      <col width="25%">
+      <col width="19%">
+      <col width="6%">
       <col width="6%">
       <col width="6%">
       <col width="6%">
@@ -5181,6 +5040,7 @@ point will have a larger x-coordinate and hence the gap width will be
       <tr align="center">
         <td>11</td>
         <td>rsv</td>
+        <td>UM</td>
         <td>dst</td>
         <td>rsv</td>
         <td>offset</td>
@@ -5188,7 +5048,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetInfo:&nbsp;Parameter&nbsp;Fields.
     </caption>
@@ -5200,6 +5060,11 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td>22</td>
+        <td>UM</td>
+        <td>insert the user mode number in result block</td>
+      </tr>
       <tr>
         <td>21-20</td>
         <td>dest</td>
@@ -5217,7 +5082,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetInfo: Module Result Block.
     </caption>
@@ -5240,7 +5105,7 @@ point will have a larger x-coordinate and hence the gap width will be
         <td>rsv</td>
         <td>rsv</td>
         <td>rsv</td>
-        <td>3</td>
+        <td>3 (4)<sup>(*)</sup></td>
       </tr>
       <tr align="center">
         <td colspan="2">rsv</td>
@@ -5251,9 +5116,13 @@ point will have a larger x-coordinate and hence the gap width will be
       <tr align="center">
         <td colspan="10">option number</td>
       </tr>
+      <tr align="center">
+        <td colspan="9">rsv</td>
+        <td colspan="1">user mode number<sup>(*)</sup></td>
+      </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetInfo: Result Fields.
     </caption>
@@ -5273,7 +5142,7 @@ point will have a larger x-coordinate and hence the gap width will be
       <tr>
         <td>28</td>
         <td>laserinput</td>
-        <td>state of the external laserinput</td>
+        <td>in SI-sensors state of the external laserinput AND Laser status/ In standard sensors laser status</td>
       </tr>
       <tr>
         <td>27-16</td>
@@ -5290,12 +5159,24 @@ point will have a larger x-coordinate and hence the gap width will be
         <td>option number</td>
         <td>ASCII encoded option number</td>
       </tr>
+      <tr>
+        <td>31-4</td>
+        <td>rsv</td>
+        <td>reserved</td>
+      </tr>
+      <tr>
+        <td>3-0</td>
+        <td>user mode number</td>
+        <td>integer 0 to 15</td>
+      </tr>
     </tbody>
   </table><br>
+  <p><sup>(*)</sup> Backward compatibility: The length of the result block depends on the setting of the UM bit. If the bit is unset then the
+  result block will have only 3 quadlets as in previous versions of the module.</p>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m12" id="m12">Module 12: MeasurementServer</a></h2>
   <p>This module controls the channel where data written with <a href="#func_write-serial">Formula: Function if-write-serial</a> will be sent.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       MeasurementServer: Module Parameter Block.
     </caption>
@@ -5327,7 +5208,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       MeasurementServer
     </caption>
@@ -5355,7 +5236,8 @@ point will have a larger x-coordinate and hence the gap width will be
         <td>mode</td>
         <td>0 = disable<br>
         1 = serial port (default)<br>
-        2 = UDP</td>
+        2 = UDP<br>
+        3 = UDP Dump</td>
       </tr>
       <tr>
         <td>31..16</td>
@@ -5372,7 +5254,7 @@ point will have a larger x-coordinate and hence the gap width will be
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m13" id="m13">Module 13: GetProfileInfo</a></h2>
   <p>This module provides the average values of different profile parameters from the selected source stripe.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetProfileInfo: Module Parameter Block.
     </caption>
@@ -5399,7 +5281,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetProfileInfo: Parameter Fields.
     </caption>
@@ -5433,7 +5315,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetProfileInfo: Module Result Block.
     </caption>
@@ -5471,7 +5353,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       GetProfileInfo: Result Fields.
     </caption>
@@ -5517,7 +5399,7 @@ point will have a larger x-coordinate and hence the gap width will be
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m14" id="m14">Module 14: CircleFit</a></h2>Kreispassung
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       CircleFit: Module Parameter Block.
     </caption>
@@ -5548,7 +5430,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       CircleFit: Parameter Fields.
     </caption>
@@ -5588,7 +5470,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       CircleFit: Module Result Block.
     </caption>
@@ -5632,7 +5514,7 @@ point will have a larger x-coordinate and hence the gap width will be
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       CircleFit: Result Fields.
     </caption>
@@ -5687,9 +5569,8 @@ point will have a larger x-coordinate and hence the gap width will be
   </table>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <h2><a name="m15" id="m15">Module 15: Circular Bead Finder</a></h2>
-  <p>The circular bead finder module extracts characteristics of a bead 
-or a similar geometrical feature on top of circular reference lines.</p>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <p>The circular bead finder module extracts characteristics of a bead or a similar geometrical feature on top of circular reference lines.</p>
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Circular Bead Finder: Module Parameter Block.
     </caption>
@@ -5758,7 +5639,7 @@ or a similar geometrical feature on top of circular reference lines.</p>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Bead Finder: Parameter Fields.
     </caption>
@@ -5887,7 +5768,7 @@ or a similar geometrical feature on top of circular reference lines.</p>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Circular Bead Finder: Module Result Block.
     </caption>
@@ -5939,7 +5820,7 @@ or a similar geometrical feature on top of circular reference lines.</p>
       </tr>
     </tbody>
   </table><br>
-  <table frame="box" cellspacing="1" cellpadding="3" border="1">
+  <table border="1" cellpadding="3" cellspacing="1" frame="box">
     <caption>
       Bead Finder: Result Fields.
     </caption>
@@ -6035,6 +5916,5 @@ or a similar geometrical feature on top of circular reference lines.</p>
   <p>This special module contains the results of the General queue.</p>
   <p align="right">Back to <a href="#contents">Contents</a>.</p>
   <hr>
-
-
-</body></html>
+</body>
+</html>

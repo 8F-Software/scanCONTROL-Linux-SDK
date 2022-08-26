@@ -101,6 +101,7 @@ gint32 trigger_profile(LLT *hllt);
 gint32 trigger_container(LLT *hllt);
 gint32 container_trigger_enable(LLT *hllt);
 gint32 container_trigger_disable(LLT *hllt);
+gint32 flush_container(LLT *hllt);
 gint32 set_peak_filter(LLT *hllt, gushort min_width, gushort max_width, gushort min_intensity, gushort max_intensity);
 gint32 set_free_measuring_field(LLT *hllt, gushort start_x, gushort size_x, gushort start_z, gushort size_z);
 gint32 set_dynamic_measuring_field_tracking(LLT *hllt, gushort div_x, gushort div_z, gushort multi_x, gushort multi_z);

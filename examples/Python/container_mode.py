@@ -115,7 +115,7 @@ if ret < 1:
 # Set rearrangement (z only)
 rec_log2 = 1.0 / m.log(2.0)
 container_resolution = m.floor((m.log(resolution) * rec_log2) + 0.5)
-ret = llt.set_feature(hLLT, llt.FEATURE_FUNCTION_PROFILE_REARRANGEMENT, llt.CONTAINER_DATA_Z | llt.CONTAINER_STRIPE_1 | (container_resolution << 12))
+ret = llt.set_feature(hLLT, llt.FEATURE_FUNCTION_PROFILE_REARRANGEMENT, llt.CONTAINER_DATA_Z | llt.CONTAINER_STRIPE_1 | int(container_resolution) << 12)
 if ret < 1:
     raise ValueError("Error setting rearrangement: " + str(ret))
 

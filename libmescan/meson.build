@@ -1,5 +1,5 @@
 project('mescan', 'c', default_options: 'c_std=gnu99',
-        version: '0.2.5',
+        version: '0.2.6',
         license: 'LGPL')
 incdir = include_directories('include')
 
@@ -11,7 +11,7 @@ install_headers(headers, subdir: 'mescan')
 
 libmescan = shared_library('mescan', sources, include_directories: incdir,
                                   dependencies: aravis_dep,
-                                  version:'0.2.5',
+                                  version:'0.2.6',
                                   soversion:'0',
                                   install: true,
                                   install_dir:'/usr/local/lib' )
@@ -19,7 +19,7 @@ libmescan = shared_library('mescan', sources, include_directories: incdir,
 pkg_mod = import('pkgconfig')
 pkg_mod.generate( libraries: '-lmescan',
                   subdirs: 'mescan',
-                  version: '0.2.5',
+                  version: '0.2.6',
                   name: 'mescan',
                   filebase: 'mescan',
                   install_dir:'/usr/local/lib/pkgconfig',

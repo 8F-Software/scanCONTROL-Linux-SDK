@@ -250,6 +250,22 @@ trigger_profile = llt['trigger_profile']
 trigger_profile.restype = ct.c_int
 trigger_profile.argtypes = [ct.POINTER(LLT)]
 
+trigger_container = llt['trigger_container']
+trigger_container.restype = ct.c_int
+trigger_container.argtypes = [ct.POINTER(LLT)]
+
+container_trigger_enable = llt['container_trigger_enable']
+container_trigger_enable.restype = ct.c_int
+container_trigger_enable.argtypes = [ct.POINTER(LLT)]
+
+container_trigger_disable = llt['container_trigger_disable']
+container_trigger_disable.restype = ct.c_int
+container_trigger_disable.argtypes = [ct.POINTER(LLT)]
+
+flush_container = llt['flush_container']
+flush_container.restype = ct.c_int
+flush_container.argtypes = [ct.POINTER(LLT)]
+
 set_peak_filter = llt['set_peak_filter']
 set_peak_filter.restype = ct.c_int
 set_peak_filter.argtypes = [ct.POINTER(LLT), ct.c_ushort, ct.c_ushort, ct.c_ushort, ct.c_ushort]

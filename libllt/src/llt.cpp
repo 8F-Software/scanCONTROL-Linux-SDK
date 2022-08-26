@@ -840,6 +840,20 @@ gint32 CInterfaceLLT::ContainerTriggerDisable()
 }
 
 /**
+ * FlushContainer
+ *
+ * Executes a container flush signal
+ *
+ * Returns: error codes or success
+ *
+ * Since: 0.2.1
+ */
+gint32 CInterfaceLLT::FlushContainer()
+{
+    return flush_container(hllt);
+}
+
+/**
  * SaveGlobalParameter
  *
  * Saves global / user mode independent settings like IP and Calibration

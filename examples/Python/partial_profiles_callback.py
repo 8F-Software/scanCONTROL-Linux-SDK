@@ -163,7 +163,7 @@ def data_gen(*args):
     event.wait()
     fret = llt.convert_part_profile_2_values(profile_buffer, len(profile_buffer), ct.byref(partial_profile_struct), scanner_type, 0,
                                          null_ptr_short, null_ptr_short, null_ptr_short, x_p, z_p, null_ptr_int, null_ptr_int)
-    if fret & llt.CONVERT_X is 0 or fret & llt.CONVERT_Z is 0:
+    if fret & llt.CONVERT_X == 0 or fret & llt.CONVERT_Z == 0:
         raise ValueError("Error converting data: " + str(ret))
 
     for i in range(16):

@@ -99,6 +99,7 @@ class CInterfaceLLT
     gint32 TriggerContainer();
     gint32 ContainerTriggerEnable();
     gint32 ContainerTriggerDisable();
+    gint32 FlushContainer();
     gint32 SetPeakFilter(gushort min_width, gushort max_width, gushort min_intensity, gushort max_intensity);
     gint32 SetFreeMeasuringField(gushort start_x, gushort size_x, gushort start_z, gushort size_z);
     gint32 SetDynamicMeasuringFieldTracking(gushort div_x, gushort div_z, gushort multi_x, gushort multi_z);
