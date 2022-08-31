@@ -1,7 +1,7 @@
 project('c_examples', 'c', default_options: ['c_std=gnu99'])
 
-aravis_dep = dependency('aravis-0.6', version: '>=0.6')
-mescan_dep = dependency('mescan', version: '>=0.2.6')
+aravis_dep = dependency('aravis-0.8', version: '>=0.7')
+mescan_dep = dependency('mescan', version: '>=1.0.0')
 
 executable('get_profiles_callback', 'get_profiles_callback/get_profiles_callback.c',
                                         dependencies: [aravis_dep, mescan_dep],

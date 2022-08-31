@@ -1,3 +1,6 @@
+v1.0.0 - 20.07.22
+-ported to Aravis 0.8
+
 v0.2.6 - 16.03.22
 -libmescan updated:
     - compatible with Firmware v52(new Genicam standard)

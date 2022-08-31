@@ -617,7 +617,7 @@ gint32 connect_llt(LLT *hllt)
         return ERROR_CONNECT_INVALID_DEVICE_ID;
     }
     // instantiation of the camera with given device id
-    hllt->camera = arv_camera_new(hllt->device_id);
+    hllt->camera = arv_camera_new(hllt->device_id, NULL);
     if (hllt->camera == NULL) {
         return ERROR_CONNECT_SELECTED_LLT;
     }
@@ -625,7 +625,7 @@ gint32 connect_llt(LLT *hllt)
 
     // get device instance and camera name
     hllt->device = arv_camera_get_device(hllt->camera);
-    camera_name = arv_camera_get_model_name(hllt->camera);
+    camera_name = arv_camera_get_model_name(hllt->camera, NULL);
     if (hllt->device == NULL || camera_name == NULL) {
         camera_name = NULL;
         disconnect_llt(hllt);
@@ -643,14 +643,14 @@ gint32 connect_llt(LLT *hllt)
         // get Firmware version due to new Genicam standard
         const char *version = NULL;
         char firmware_string[2];
-        version = arv_device_get_string_feature_value(hllt->device, "DeviceFirmwareVersion");
+        version = arv_device_get_string_feature_value(hllt->device, "DeviceFirmwareVersion", NULL);
         if (version == NULL){
             return ERROR_GENERAL_DEVICE_BUSY;
         }
         strncpy(firmware_string, &version[1],2);
         hllt->firmware_id = atoi(firmware_string);
 
-        const char *model_name = arv_device_get_string_feature_value(hllt->device, "DeviceModelName");
+        const char *model_name = arv_device_get_string_feature_value(hllt->device, "DeviceModelName", NULL);
         if (model_name == NULL){
             return ERROR_GENERAL_DEVICE_BUSY;
         }
@@ -679,34 +679,34 @@ gint32 connect_llt(LLT *hllt)
     if (is_llt3000){
         if (is_v52orNewer){
             if (!sc3002){
-                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048");
-                arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
-                arv_device_set_string_feature_value(hllt->device, "ComponentSelector", "Intensity");
-                arv_device_set_string_feature_value(hllt->device, "ComponentEnable", "True");
-                arv_device_set_string_feature_value(hllt->device, "AcquisitionMode", "Continuous");
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048", NULL);
+                arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
+                arv_device_set_string_feature_value(hllt->device, "ComponentSelector", "Intensity", NULL);
+                arv_device_set_string_feature_value(hllt->device, "ComponentEnable", "True", NULL);
+                arv_device_set_string_feature_value(hllt->device, "AcquisitionMode", "Continuous", NULL);
             }
             else {
-                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024");
-                arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
-                arv_device_set_string_feature_value(hllt->device, "ComponentSelector", "Intensity");
-                arv_device_set_string_feature_value(hllt->device, "ComponentEnable", "True");
-                arv_device_set_string_feature_value(hllt->device, "AcquisitionMode", "Continuous");
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024", NULL);
+                arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
+                arv_device_set_string_feature_value(hllt->device, "ComponentSelector", "Intensity", NULL);
+                arv_device_set_string_feature_value(hllt->device, "ComponentEnable", "True", NULL);
+                arv_device_set_string_feature_value(hllt->device, "AcquisitionMode", "Continuous", NULL);
             }
 
 
         }
         else {
-            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile"); 
+            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile", NULL); 
         }
        
     }
     else {
-        arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
+        arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile", NULL);
     }   
-    arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8");
-    arv_device_set_integer_feature_value(hllt->device, "OffsetX", 0);
-    arv_device_set_integer_feature_value(hllt->device, "OffsetY", 0);
-    arv_device_set_integer_feature_value(hllt->device, "Width", 64);
+    arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8", NULL);
+    arv_device_set_integer_feature_value(hllt->device, "OffsetX", 0, NULL);
+    arv_device_set_integer_feature_value(hllt->device, "OffsetY", 0, NULL);
+    arv_device_set_integer_feature_value(hllt->device, "Width", 64, NULL);
 
     // read device_properties.dat and read info if path set
     if (hllt->path_device_properties != NULL) {
@@ -809,7 +809,7 @@ gint32 get_llt_type(LLT *hllt, TScannerType *scanner_type)
         return ERROR_GENERAL_NOT_CONNECTED;
     }
     // get model name via GeniCam
-    const char *full_model_name = arv_device_get_string_feature_value(hllt->device, "DeviceModelName");
+    const char *full_model_name = arv_device_get_string_feature_value(hllt->device, "DeviceModelName", NULL);
     if (full_model_name == NULL) {
         return ERROR_GENERAL_DEVICE_BUSY;
     }
@@ -890,14 +890,14 @@ gint32 get_device_name(LLT *hllt, char *device_name, guint32 dev_name_size, char
             return ERROR_GETDEVICENAME_SIZE_TOO_LOW;
         }
         memset(device_name, 0, dev_name_size);
-        strncpy(device_name, arv_device_get_string_feature_value(hllt->device, "DeviceModelName"), 45);
-        strncat(device_name, arv_device_get_string_feature_value(hllt->device, "DeviceVersion"), 30);
+        strncpy(device_name, arv_device_get_string_feature_value(hllt->device, "DeviceModelName", NULL), 45);
+        strncat(device_name, arv_device_get_string_feature_value(hllt->device, "DeviceVersion", NULL), 30);
     }
     if (vendor_name != NULL) {
         if (dev_name_size < 75) {
             return ERROR_GETDEVICENAME_SIZE_TOO_LOW;
         }
-        strncpy(vendor_name, arv_device_get_string_feature_value(hllt->device, "DeviceVendorName"), 75);
+        strncpy(vendor_name, arv_device_get_string_feature_value(hllt->device, "DeviceVendorName", NULL), 75);
     }
     return GENERAL_FUNCTION_OK;
 }
@@ -924,7 +924,7 @@ gint32 get_llt_versions(LLT *hllt, guint32 *dsp, guint32 *fpga1, guint32 *fpga2)
         return ERROR_GENERAL_NOT_CONNECTED;
     }
 
-    const char *version = arv_device_get_string_feature_value(hllt->device, "DeviceVersion");
+    const char *version = arv_device_get_string_feature_value(hllt->device, "DeviceVersion", NULL);
     if (version == NULL) {
         return ERROR_GENERAL_DEVICE_BUSY;
     }
@@ -1050,13 +1050,13 @@ gint32 set_resolution(LLT *hllt, guint32 resolution)
                 }
                 break; // workaround due to XML bug - delete if bug is fixed
             case 160:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode13Vita");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode13Vita", NULL);
                 break;
             case 320:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode12Vita");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode12Vita", NULL);
                 break;
             case 640:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode11Vita");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode11Vita", NULL);
                 break;
             /* case 1280:
                 arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode10Vita");
@@ -1071,13 +1071,13 @@ gint32 set_resolution(LLT *hllt, guint32 resolution)
     if (hllt->scanner_type >= scanCONTROL25xx_25 && hllt->scanner_type <= scanCONTROL25xx_xxx) {
         switch (resolution) {
             case 160:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode13Vita");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode13Vita", NULL);
                 break;
             case 320:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode12Vita");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode12Vita", NULL);
                 break;
             case 640:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode11Vita");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode11Vita", NULL);
                 break;
             default:
                 return ERROR_SETGETFUNCTIONS_NOT_SUPPORTED_RESOLUTION;
@@ -1093,13 +1093,13 @@ gint32 set_resolution(LLT *hllt, guint32 resolution)
                 }
                 break; // workaround due to XML bug - delete if bug is fixed
             case 80:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode13");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode13", NULL);
                 break;
             case 160:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode12");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode12", NULL);
                 break;
             case 320:
-                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode11");
+                arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode11", NULL);
                 break;
             /*case 640:
                 arv_device_set_string_feature_value(hllt->device, "Resolution", "VideoMode10");
@@ -1114,20 +1114,20 @@ gint32 set_resolution(LLT *hllt, guint32 resolution)
         if (is_v52orNewer){
             switch (resolution) {
                 case 256:
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile256");
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile256", NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                     break;
                 case 512:
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile512");
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile512", NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                     break;
                 case 1024:
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024");
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024", NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                     break;
                 case 2048:
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048");
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048", NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                     break;
                 default:
                     return ERROR_SETGETFUNCTIONS_NOT_SUPPORTED_RESOLUTION;
@@ -1137,16 +1137,16 @@ gint32 set_resolution(LLT *hllt, guint32 resolution)
         else{
             switch (resolution) {
                 case 256:
-                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile256");
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile256", NULL);
                     break;
                 case 512:
-                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile512");
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile512", NULL);
                     break;
                 case 1024:
-                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile1024");
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile1024", NULL);
                     break;
                 case 2048:
-                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile2048");
+                    arv_device_set_string_feature_value(hllt->device, "ProfileResolution", "Profile2048", NULL);
                     break;
                 default:
                     return ERROR_SETGETFUNCTIONS_NOT_SUPPORTED_RESOLUTION;
@@ -1189,14 +1189,14 @@ gint32 get_resolution(LLT *hllt, guint32 *resolution)
         const char *profile_resolution;
         if (hllt->scanner_type >= scanCONTROL30xx_25 && hllt->scanner_type <= scanCONTROL30xx_xxx) {
             if (is_v52orNewer){
-                profile_resolution = arv_device_get_string_feature_value(hllt->device, "RegionSelector");
+                profile_resolution = arv_device_get_string_feature_value(hllt->device, "RegionSelector", NULL);
             }
             else {
-                profile_resolution = arv_device_get_string_feature_value(hllt->device, "ProfileResolution");
+                profile_resolution = arv_device_get_string_feature_value(hllt->device, "ProfileResolution", NULL);
             }
             
         } else {
-            profile_resolution = arv_device_get_string_feature_value(hllt->device, "Resolution");
+            profile_resolution = arv_device_get_string_feature_value(hllt->device, "Resolution", NULL);
         }
 
         // get current video mode # workaround due to XML bug - delete if bug is fixed        
@@ -1560,18 +1560,18 @@ gint32 set_partial_profile(LLT *hllt, TPartialProfile *partial_profile)
                 profile_resolution = "Profile256";
         }
         if (is_v52orNewer){
-            arv_device_set_string_feature_value(hllt->device, "RegionSelector", profile_resolution);
-            arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+            arv_device_set_string_feature_value(hllt->device, "RegionSelector", profile_resolution, NULL);
+            arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
         }
         else {
-            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile");
+            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile", NULL);
         }
     }
     else {
-        arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
+        arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile", NULL);
     }
    
-    arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8");
+    arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8", NULL);
 
     guint32 point_unit_size = 0, data_unit_size = 0;
     gint32 ret = 0;
@@ -1586,10 +1586,10 @@ gint32 set_partial_profile(LLT *hllt, TPartialProfile *partial_profile)
         return ERROR_PARTPROFILE_NOT_MOD_UNITSIZE_DATA;
     }
 
-    arv_device_set_integer_feature_value(hllt->device, "OffsetX", partial_profile->nStartPointData);
-    arv_device_set_integer_feature_value(hllt->device, "OffsetY", partial_profile->nStartPoint);
-    arv_device_set_integer_feature_value(hllt->device, "Width", partial_profile->nPointDataWidth);
-    arv_device_set_integer_feature_value(hllt->device, "Height", partial_profile->nPointCount);
+    arv_device_set_integer_feature_value(hllt->device, "OffsetX", partial_profile->nStartPointData, NULL);
+    arv_device_set_integer_feature_value(hllt->device, "OffsetY", partial_profile->nStartPoint, NULL);
+    arv_device_set_integer_feature_value(hllt->device, "Width", partial_profile->nPointDataWidth, NULL);
+    arv_device_set_integer_feature_value(hllt->device, "Height", partial_profile->nPointCount, NULL);
 
     hllt->partial_profile = *partial_profile;
 
@@ -1789,7 +1789,7 @@ gint32 get_min_max_packet_size(LLT *hllt, guint32 *min_packet_size, guint32 *max
     gint64 min_packet_size_header = 0, max_packet_size_header = 0;
 
     arv_device_get_integer_feature_bounds(hllt->device, "GevSCPSPacketSize", &min_packet_size_header,
-                                          &max_packet_size_header);
+                                          &max_packet_size_header, NULL);
 
     if (min_packet_size != NULL) {
         *min_packet_size = min_packet_size_header - 36;
@@ -1821,7 +1821,7 @@ gint32 get_packet_size(LLT *hllt, guint32 *packet_size)
         return ERROR_GENERAL_NOT_CONNECTED;
     }
     if (packet_size != NULL) {
-        *packet_size = arv_device_get_integer_feature_value(hllt->device, "GevSCPSPacketSize") - 36;
+        *packet_size = arv_device_get_integer_feature_value(hllt->device, "GevSCPSPacketSize", NULL) - 36;
     }
     return GENERAL_FUNCTION_OK;
 }
@@ -1904,10 +1904,10 @@ gint32 read_write_usermodes(LLT *hllt, gboolean read_write, guint32 usermode)
         //necessary to read back the resolution
         if (is_v52orNewer){
             if (!sc3002){//Reset Res to standard
-                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048");
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile2048", NULL);
             }
             else {
-                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024");
+                arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Profile1024", NULL);
             }  		
 	    }
         if ((ret = set_feature(hllt, 0xf0f00624, ((usermode & 0x0000000F) << 28))) < GENERAL_FUNCTION_OK) {
@@ -1947,7 +1947,7 @@ gint32 set_packet_size(LLT *hllt, guint32 packet_size)
     if ((packet_size < min_packet_size) || (packet_size > max_packet_size) || (packet_size % 4 != 0)) {
         return ERROR_SETGETFUNCTIONS_PACKET_SIZE;
     }
-    arv_device_set_integer_feature_value(hllt->device, "GevSCPSPacketSize", packet_size + 36);
+    arv_device_set_integer_feature_value(hllt->device, "GevSCPSPacketSize", packet_size + 36, NULL);
     return GENERAL_FUNCTION_OK;
 }
 
@@ -2121,35 +2121,35 @@ gint32 transfer_video_stream(LLT *hllt, TTransferVideoType video_type, gboolean 
         if (is_llt3000) {
             if (is_v52orNewer){
                 if (video_type == VIDEO_MODE_0){
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "VideoLowRes");
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "VideoLowRes", NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                 }
                 else {
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "VideoHighRes");
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "VideoHighRes", NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                 }
             }
             else {
                 if (video_type == VIDEO_MODE_0) {
-                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "LowRes");
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "LowRes", NULL);
                 } 
                 else {
-                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "HighRes");
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "HighRes", NULL);
                 }
             }
 
         } else {
-            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeVideo");            
+            arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeVideo", NULL);            
         }
 
         gint64 max_width = 0, max_height = 0;        
-        arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8");
-        arv_device_set_integer_feature_value(hllt->device, "OffsetX", 0);
-        arv_device_set_integer_feature_value(hllt->device, "OffsetY", 0);
-        arv_device_get_integer_feature_bounds(hllt->device, "Width", NULL, &max_width);
-        arv_device_get_integer_feature_bounds(hllt->device, "Height", NULL, &max_height);
-        arv_device_set_integer_feature_value(hllt->device, "Width", max_width);
-        arv_device_set_integer_feature_value(hllt->device, "Height", max_height);        
+        arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8", NULL);
+        arv_device_set_integer_feature_value(hllt->device, "OffsetX", 0, NULL);
+        arv_device_set_integer_feature_value(hllt->device, "OffsetY", 0, NULL);
+        arv_device_get_integer_feature_bounds(hllt->device, "Width", NULL, &max_width, NULL);
+        arv_device_get_integer_feature_bounds(hllt->device, "Height", NULL, &max_height, NULL);
+        arv_device_set_integer_feature_value(hllt->device, "Width", max_width, NULL);
+        arv_device_set_integer_feature_value(hllt->device, "Height", max_height, NULL);        
 
         if (hllt->cast_register_buffer_callback == NULL) {
             size_t data_size = max_width * max_height;
@@ -2199,16 +2199,16 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
         if (transfer_profile_type == NORMAL_CONTAINER_MODE && hllt->profile_config == CONTAINER) {
             if(is_llt3000) {
                 if (is_v52orNewer){
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Container");
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", "Container", NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                 }
                 else {
-                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Container");
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Container", NULL);
                 }
             } else {
-                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeContainer");
+                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeContainer", NULL);
             }
-            arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono16");
+            arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono16", NULL);
 
             if (hllt->cast_register_buffer_callback == NULL) {
                 guint32 width = 0, height = 0;
@@ -2222,21 +2222,21 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
             if(is_llt3000) {
                 if (is_v52orNewer){
                     const char* profile_resolution;
-        	        profile_resolution = arv_device_get_string_feature_value(hllt->device, "RegionSelector");       	
-                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", profile_resolution);
-                    arv_device_set_integer_feature_value(hllt->device, "Height", hllt->resolution);
-                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On");
+        	        profile_resolution = arv_device_get_string_feature_value(hllt->device, "RegionSelector", NULL);       	
+                    arv_device_set_string_feature_value(hllt->device, "RegionSelector", profile_resolution, NULL);
+                    arv_device_set_integer_feature_value(hllt->device, "Height", hllt->resolution, NULL);
+                    arv_device_set_string_feature_value(hllt->device, "RegionMode", "On", NULL);
                 }
                 else {
-                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile");
+                    arv_device_set_string_feature_value(hllt->device, "TransmissionType", "Profile", NULL);
                 }
             } else {
-                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile");
+                arv_device_set_string_feature_value(hllt->device, "TransmissionType", "TypeProfile", NULL);
             }
-            arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8");
-            arv_device_set_integer_feature_value(hllt->device, "Width", 64);
-            arv_device_set_integer_feature_value(hllt->device, "OffsetX", 0);
-            arv_device_set_integer_feature_value(hllt->device, "OffsetY", 0);
+            arv_device_set_string_feature_value(hllt->device, "PixelFormat", "Mono8", NULL);
+            arv_device_set_integer_feature_value(hllt->device, "Width", 64, NULL);
+            arv_device_set_integer_feature_value(hllt->device, "OffsetX", 0, NULL);
+            arv_device_set_integer_feature_value(hllt->device, "OffsetY", 0, NULL);
             set_resolution(hllt, hllt->resolution);
             if (hllt->cast_register_buffer_callback == NULL) {
                 size_t data_size = hllt->resolution * 64;
@@ -2259,8 +2259,8 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
             return ERROR_SETGETFUNCTIONS_WRONG_PROFILE_CONFIG;
         }
         // start aravis transmission setup
-        guint32 payload = arv_camera_get_payload(hllt->camera);
-        hllt->stream = arv_camera_create_stream(hllt->camera, stream_callback, (void *)hllt);
+        guint32 payload = arv_camera_get_payload(hllt->camera, NULL);
+        hllt->stream = arv_camera_create_stream(hllt->camera, stream_callback, (void *)hllt, NULL);
         if (hllt->stream != NULL) {
             // suppress packet resend
             g_object_set(hllt->stream, "packet-resend", ARV_GV_STREAM_PACKET_RESEND_NEVER, NULL);
@@ -2271,7 +2271,7 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
             // connect buffer callback function
             g_signal_connect(hllt->stream, "new-buffer", G_CALLBACK(buffer_callback), hllt);
             // start the video stream
-            arv_camera_start_acquisition(hllt->camera);
+            arv_camera_start_acquisition(hllt->camera, NULL);
             hllt->is_transmitting = true;
             // warm up transmission
             usleep(2500);
@@ -2284,7 +2284,7 @@ gint32 transfer_profiles(LLT *hllt, TTransferProfileType transfer_profile_type, 
     } else {
         if (hllt->is_transmitting && hllt->stream != NULL) {
             // stop transmission
-            arv_camera_stop_acquisition(hllt->camera);
+            arv_camera_stop_acquisition(hllt->camera, NULL);
             hllt->is_transmitting = false;
             // signal must be inhibited to avoid stream thread running after the last unref
             arv_stream_set_emit_signals(hllt->stream, false);
@@ -3100,8 +3100,8 @@ gint32 export_llt_config_string(LLT *hllt, char *config_data_array, gint32 array
     if ((ret = get_feature(hllt, FEATURE_FUNCTION_SERIAL, &feature)) < GENERAL_FUNCTION_OK) {
         return ret;
     }
-    const char *full_model_name = arv_device_get_string_feature_value(hllt->device, "DeviceModelName");
-    const char *version = arv_device_get_string_feature_value(hllt->device, "DeviceVersion");
+    const char *full_model_name = arv_device_get_string_feature_value(hllt->device, "DeviceModelName", NULL);
+    const char *version = arv_device_get_string_feature_value(hllt->device, "DeviceVersion", NULL);
 
     // get version number
     char raw_version[3];
