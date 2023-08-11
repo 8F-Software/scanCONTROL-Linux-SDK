@@ -35,7 +35,7 @@ To use the libraries with Python (>=3.4), the module pylinllt (located in the py
 
 Aravis has to be compiled from source via the GNU build system:
 
-- [Aravis](https://github.com/AravisProject/aravis/releases) (version 0.5.8 or newer)
+- [Aravis](https://github.com/AravisProject/aravis/releases) (version 0.8 or newer)
 
 To compile the basic GNU build toolchain and the autotools are necessary. Further aravis dependencies are:
 
